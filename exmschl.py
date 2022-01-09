@@ -59,7 +59,7 @@ num_stu = form1.number_input('Total eligible students', min_value = 400, max_val
 
 num_seats = form1.number_input('Total seats available', min_value = 3, max_value = 1500, value = 1000, step = 10)
 
-num_trials = form1.number_input('Trials to run', min_value = 10, max_value = 1000, value = 10, step = 10)
+num_trials = form1.number_input('Trials to run', min_value = 100, max_value = 1000, value = 10, step = 10)
 
 form1.form_submit_button('Submit changes')
 
