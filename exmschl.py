@@ -210,9 +210,6 @@ df_skew_NoBonus_Aplus = simulate_trials(make_data1,tier_skew, 100)
 
 
 """
-#### What happens when no bonus points are awarded.
-The first plot shows the distribution of 
-
 ###### Explanatory note to the plot:
 1.X axis shows the number of students with a score at or above the cutoff score. A cutoff score of 90 was used to generate plots in the two left most columns, and a cutoff of 100 was used to generat plots
 for the two right most columns).
@@ -224,6 +221,9 @@ instances, out of 100 trials, when 200 students scored at or above the cutoff sc
 
 4. If the entire histogram is located to the left of, then there will always be more seats than students above the specified cutoff in all trials. Conversely when
 the entire histogram is to the right of the redline, then there are more students than seats (for that particular cutoff score). 
+"""
+"""
+#### When no bonus points are awarded.
 """
 fig, ax = plt.subplots(len(df_even_NoBonus_A.columns),4, figsize = (18, 15))
 for i, item in enumerate(df_even_NoBonus_A):
@@ -248,7 +248,7 @@ st.pyplot(fig)
 
 
 """
-#### What happens when bonus points are added.
+#### When bonus points are awarded to 80% of students.
 """
 df_skew_bonus_A = simulate_trials(make_data2,tier_skew,90)
 df_even_bonus_A = simulate_trials(make_data2, tier_even,90)
