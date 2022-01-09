@@ -6,6 +6,8 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 st.title('Boston Exam School Admissions')
+
+#-----------------------------------------Markdown text that will be displayed in the browser-----------------------------begin
 """
     #### The effect of uneven tier distribution and bonus points on probability of admission into exam schools.
 
@@ -25,15 +27,17 @@ st.title('Boston Exam School Admissions')
     The above factors, combined with the fact that the MAP test will not be used for this 2021-2022 admission cycle, ensures that many A+ students, particularly in West-Roxbury (where most non-bonus-point-schools are located) will have no chance of being admitted to these selective schools.
 
     The aim of this project is to demonstrate the effect of bonus points, and of using unevenly distributed tiers, on the probability of admission to selective schools. In this project, we will generate synthetic data (within the bounds of what we know from previous admission cycles) and run repeated simulations to determine the probability distribution of admissions to these schools.
+"""
 
+with st.expander("See explanation"):
+     st.write("""
+         #### Method:
+     We will first create synthetic data using two different methods. The first without bonus points, and the second with bonus points. We will create two tier distributions: First, tiers that have the same number of students (Even distribution); second, with more students in the upper tiers (Skewed distribution). For the skewed tier distribution, relative distribution of students per tier will be estimated by data presented by the school committee and the exam school task force.
 
-    #### Method:
-    We will first create synthetic data using two different methods. The first without bonus points, and the second with bonus points. We will create two tier distributions: First, tiers that have the same number of students (Even distribution); second, with more students in the upper tiers (Skewed distribution). For the skewed tier distribution, relative distribution of students per tier will be estimated by data presented by the school committee and the exam school task force.
+     We will create a form where one can specify the number of applicants, the total number of seats, and the number of trial simulations to run. This will be the input interface for those who want to tinker with the data but are not familiar with the workings of a python notebook.
 
-    We will create a form where one can specify the number of applicants, the total number of seats, and the number of trial simulations to run. This will be the input interface for those who want to tinker with the data but are not familiar with the workings of a python notebook.
-
-    Synthetic data creation:
-    Two functions to create synthetic data will be written. The only difference between the functions is that one does not use bonus points in calculating the final score, and the other does. Two different methods are used to generate data as we want to explore the impact of bonus points on the probability of admission.
+     Synthetic data creation:
+     Two functions to create synthetic data will be written. The only difference between the functions is that one does not use bonus points in calculating the final score, and the other does. Two different methods are used to generate data as we want to explore the impact of bonus points on the probability of admission.
 
     1. A DataFrame containing n (= number of student) rows will be created.
     2. Raw scores will be randomly generated and assigned to each student. Scores will range from 8 to 11 (grades B to A +).
@@ -45,12 +49,12 @@ st.title('Boston Exam School Admissions')
     The number of simulations to be run will be specified in the input form. (Running 1000 simulations is recommended, but that will take a few minutes. If you want quick answers, run a 100 simulations).
 
 
+  """)
 
+    
+#----------------------------------------Markwown text displayed in the browser ----------------------------end
 
-
-
-"""
-
+#-------------------------------------------Input form---------------begin
 form1 = st.sidebar.form(key ='options')
 
 form1.header('Input Parameters')
@@ -62,7 +66,7 @@ num_seats = form1.number_input('Total seats available', min_value = 3, max_value
 num_trials = form1.number_input('Trials to run', min_value = 10, max_value = 1000, value = 100, step = 10)
 
 form1.form_submit_button('Submit changes')
-
+#-------------------------------------------Input form----------------end
 
 
 n_students =  num_stu
@@ -167,7 +171,7 @@ def A_plus_rejected(dist_list):
   All of the serieses thus produced are stored in a list. This list is stored in a dataframe. The dataframe is returned.
   """
   
-  list_outer = [] # list to aggregate the results. Will be used to make the dataframe---------------
+  list_outer = [] # list to aggregate the results. Will be used to make the dataframe
   for i in range(n_trials): #specifies the number of runs
     df_input= make_data2(dist_list) # make a simulated random dataframe
     
@@ -208,7 +212,7 @@ df_even_NoBonus_Aplus = simulate_trials(make_data1,tier_even, 100)
 
 df_skew_NoBonus_Aplus = simulate_trials(make_data1,tier_skew, 100)
 
-
+#--------------------------------------------------Markdown text that will be displayed in the browser------------------------------begin
 """
 ###### Explanatory note to the plot:
 1. The x-axis shows the number of students with a score at or above a cutoff score. A cutoff score of 90 was used to generate plots in the two left most columns, and a cutoff of 100 was used to generat plots
@@ -226,6 +230,8 @@ some trials where there were more students (who scored above the cutoff) than se
 """
 #### When no bonus points are awarded.
 """
+#--------------------------------------------------Markdown text that will be displayed in the browser--------------------------------end
+
 fig, ax = plt.subplots(len(df_even_NoBonus_A.columns),4, figsize = (18, 15))
 for i, item in enumerate(df_even_NoBonus_A):
     df_even_NoBonus_A[item].hist(histtype = 'step', bins = 10, lw = 2, ax = ax[i,0])
@@ -282,19 +288,28 @@ st.pyplot(fig)
 ### Percentage of students with perfect scores, but no bonus points, who are rejected.
 The results of n trials to determine the percentage of students with perfect scores who will be rejected. As you run more trials (increase n), random noise will disappear.
 """
+
+
 df_1000_even_reject = A_plus_rejected(tier_even) # Thousand trials, tiers are evenly distrubuted
 
 df_1000_skew_reject = A_plus_rejected(tier_skew) # Thousand trials, tiers are skewed
+
+
 
 """
 ##### Even distribution of tiers.
 
 """
+
+
 st.write(df_1000_even_reject.agg(['mean','std']))
+
 
 """
 ##### Skewed distribution of tiers.
 """
+
+
 st.write(df_1000_skew_reject.agg(['mean','std']))
 
 
