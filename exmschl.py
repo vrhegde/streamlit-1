@@ -29,7 +29,7 @@ st.title('Boston Exam School Admissions')
     The aim of this project is to demonstrate the effect of bonus points, and of using unevenly distributed tiers, on the probability of admission to selective schools. In this project, we will generate synthetic data (within the bounds of what we know from previous admission cycles) and run repeated simulations to determine the probability distribution of admissions to these schools.
 """
 
-with st.expander("See explanation"):
+with st.expander("See Methods"):
      st.write("""
          #### Method:
      We will first create synthetic data using two different methods. The first without bonus points, and the second with bonus points. We will create two tier distributions: First, tiers that have the same number of students (Even distribution); second, with more students in the upper tiers (Skewed distribution). For the skewed tier distribution, relative distribution of students per tier will be estimated by data presented by the school committee and the exam school task force.
@@ -213,20 +213,21 @@ df_even_NoBonus_Aplus = simulate_trials(make_data1,tier_even, 100)
 df_skew_NoBonus_Aplus = simulate_trials(make_data1,tier_skew, 100)
 
 #--------------------------------------------------Markdown text that will be displayed in the browser------------------------------begin
-"""
-###### Explanatory note to the plot:
-1. The x-axis shows the number of students with a score at or above a cutoff score. A cutoff score of 90 was used to generate plots in the two left most columns, and a cutoff of 100 was used to generat plots
-for the two right most columns).
 
-2. The y-axis counts the number of times, out of n repeated trials, a particular result was reached. For example if y-axis = 20 and x-axis = 200, and n_trials = 100, then there were 20
-instances, out of 100 trials, when 200 students scored at or above the cutoff score.
+with st.expander(" Explanatory note for the plots"):
+     st.write("""
+        1. The x-axis shows the number of students with a score at or above a cutoff score. A cutoff score of 90 was used to generate plots in the two left most columns, and a cutoff of 100 was used to generat plots
+        for the two right most columns).
 
-3. The red line is set at 125, the number of seats available to each tier (calculated by dividing the total seats by the number of tiers).
+        2. The y-axis counts the number of times, out of n repeated trials, a particular result was reached. For example if y-axis = 20 and x-axis = 200, and n_trials = 100, then there were 20
+        instances, out of 100 trials, when 200 students scored at or above the cutoff score.
 
-4. If the entire histogram is located to the left of the red line, then for all trial runs, there were more seats than students who scored above the specified cutoff. Conversely, when
-the entire histogram is located to the right of the redline, then there are more students than seats for every run of the n_trials. If the histogram straddles the redline, then there were
-some trials where there were more students (who scored above the cutoff) than seats, and some trials where there were less students (who scored above the cutoff) than there were seats.
-"""
+        3. The red line is set at 125, the number of seats available to each tier (calculated by dividing the total seats by the number of tiers).
+
+        4. If the entire histogram is located to the left of the red line, then for all trial runs, there were more seats than students who scored above the specified cutoff. Conversely, when
+        the entire histogram is located to the right of the redline, then there are more students than seats for every run of the n_trials. If the histogram straddles the redline, then there were
+        some trials where there were more students (who scored above the cutoff) than seats, and some trials where there were less students (who scored above the cutoff) than there were seats.
+        """)
 """
 #### When no bonus points are awarded.
 """
