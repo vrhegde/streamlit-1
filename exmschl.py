@@ -211,16 +211,17 @@ df_skew_NoBonus_Aplus = simulate_trials(make_data1,tier_skew, 100)
 
 """
 ###### Explanatory note to the plot:
-1.X axis shows the number of students with a score at or above the cutoff score. A cutoff score of 90 was used to generate plots in the two left most columns, and a cutoff of 100 was used to generat plots
+1. The x-axis shows the number of students with a score at or above a cutoff score. A cutoff score of 90 was used to generate plots in the two left most columns, and a cutoff of 100 was used to generat plots
 for the two right most columns).
 
-2.Y axis counts the number of times, with repeated trials, that particular result was reached. For example if Y = 20 and X = 200, and trials = 100, then there were 20
+2. The y-axis counts the number of times, out of n repeated trials, a particular result was reached. For example if y-axis = 20 and x-axis = 200, and n_trials = 100, then there were 20
 instances, out of 100 trials, when 200 students scored at or above the cutoff score.
 
-3. The red line is set at 125, the number of seats available to each tier (total seats divided by number of tiers).
+3. The red line is set at 125, the number of seats available to each tier (calculated by dividing the total seats by the number of tiers).
 
-4. If the entire histogram is located to the left of, then there will always be more seats than students above the specified cutoff in all trials. Conversely when
-the entire histogram is to the right of the redline, then there are more students than seats (for that particular cutoff score). 
+4. If the entire histogram is located to the left of the red line, then for all trial runs, there were more seats than students who scored above the specified cutoff. Conversely, when
+the entire histogram is located to the right of the redline, then there are more students than seats for every run of the n_trials. If the histogram straddles the redline, then there were
+some trials where there were more students (who scored above the cutoff) than seats, and some trials where there were less students (who scored above the cutoff) than there were seats.
 """
 """
 #### When no bonus points are awarded.
