@@ -36,7 +36,7 @@ st.title('Boston Exam School Admissions')
     Two functions to create synthetic data will be written. The only difference between the functions is that one does not use bonus points in calculating the final score, and the other does. Two different methods are used to generate data as we want to explore the impact of bonus points on the probability of admission.
 
     1. A DataFrame containing n (= number of student) rows will be created.
-    2. Raw scores will be randomly generated and assigned to each student. Scores will range from 8 to 12 (grades B to A +).
+    2. Raw scores will be randomly generated and assigned to each student. Scores will range from 8 to 11 (grades B to A +).
     3. Scaled scores will be calculated by multiplying raw score by 100/12. This was the method previously used be BPS, and was employed when they ran simulations for the exam school task force.
     4. Whether or not the student gets bonus points will be generated randomly (yes =1, no =0). The random binary generator will be set such that 80% of the times the number 1 is returned (thus 80% of students get bonus points).
     5. Final scores are calculated by adding 10 points to the scaled score if the bonus points method is used. Alternately, if the non-bonus point method is used, the final score will be the same as the scaled score.
@@ -97,7 +97,7 @@ def make_data1(tier_prob_dist):
   keys_col = np.arange(0,n_students,1)  #student identifier from 0-2500
   tier_col = np.random.choice(np.arange(1, 9),size = [n_students,1], p = tier_prob_dist).flatten().tolist() # generate a list to poppulate the tier column
   bonus_col = np.random.choice(a=[1,0], size=(n_students,1), p=[.8,.2]).flatten().tolist() # generate a list to poppulate the tier column
-  raw_score = np.random.randint(8, 13, [n_students,1]).flatten().tolist()
+  raw_score = np.random.randint(8, 12, [n_students,1]).flatten().tolist()
 
   sim_df = pd.DataFrame(zip(keys_col,tier_col,bonus_col,raw_score), columns = ['keys','tier','bonus','raw_score'])
   sim_df['scaled_score'] = sim_df.raw_score * (100/12)
