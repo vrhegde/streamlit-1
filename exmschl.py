@@ -30,7 +30,7 @@ st.title('Boston Exam School Admissions')
     The aim of this project is to demonstrate the effect of bonus points, and of using unevenly distributed tiers, on the probability of admission to selective schools. In this project, we will generate synthetic data (within the bounds of what we know from previous admission cycles) and run repeated simulations to determine the probability distribution of admissions to these schools.
 """
 
-with st.expander("See Methods"):
+with st.expander("#See Methods"):
      st.write("""
      We will first create synthetic data using two different methods. The first without bonus points, and the second with bonus points. We will create two tier distributions: First, tiers that have the same number of students (Even Distribution); second, with more students in the upper tiers (Skewed Distribution). For the skewed tier distribution, relative distribution of students per tier will be estimated by data presented by the school committee and the exam school task force.
 
