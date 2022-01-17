@@ -233,13 +233,12 @@ with st.expander(" Explanatory note for the plots"):
 """
 #--------------------------------------------------Markdown text that will be displayed in the browser--------------------------------end
 
-
-   
-    
-fig1, ax = plt.subplots(len(df_even_NoBonus_A.columns),2, figsize = (10, 15))
+fig, ax = plt.subplots(len(df_even_NoBonus_A.columns),4, figsize = (18, 15))
 for i, item in enumerate(df_even_NoBonus_A):
     df_even_NoBonus_A[item].hist(histtype = 'step', bins = 10, lw = 2, ax = ax[i,0])
     df_skew_NoBonus_A[item].hist(histtype = 'step', bins = 10, lw = 2, ax = ax[i,1])
+    df_even_NoBonus_Aplus[item].hist(histtype = 'step', bins = 10, lw = 2, ax = ax[i,2])
+    df_skew_NoBonus_Aplus[item].hist(histtype = 'step', bins = 10, lw = 2, ax = ax[i,3])
 
     ax[i,0].set_ylabel('Tier ' + str(i +1), size = 14)
 
@@ -250,37 +249,11 @@ for item in ax.flatten():
 
 ax[0,0].set_title('Even Tiers \n N with score 90 and above', size = 16)
 ax[0,1].set_title('Skewed Tiers \n N with score 90 and above', size = 16)
-#st.pyplot(fig1)
+ax[0,2].set_title('Even Tiers \n N with score 100 and above', size = 16)
+ax[0,3].set_title('Skewed Tiers \n N with score 100 and above', size = 16)
+st.pyplot(fig)
 
 
-
-fig2, ax = plt.subplots(len(df_even_NoBonus_A.columns),2, figsize = (10, 15))
-for i, item in enumerate(df_even_NoBonus_Aplus):
-    
-    df_even_NoBonus_Aplus[item].hist(histtype = 'step', bins = 10, lw = 2, ax = ax[i,0])
-    df_skew_NoBonus_Aplus[item].hist(histtype = 'step', bins = 10, lw = 2, ax = ax[i,1])
-
-    ax[i,0].set_ylabel('Tier ' + str(i +1), size = 14)
-
-for item in ax.flatten():
-    item.set_xlim(20,300)
-    item.axvline(125,0,250, color = 'r')
-    item.grid(False)
-
-ax[0,0].set_title('Even Tiers \n N with score 100 and above', size = 16)
-ax[0,1].set_title('Skewed Tiers \n N with score 100 and above', size = 16)
-#st.pyplot(fig2)
-
-#-----------------------------------------------------------------
-col1, col2 = st.columns(2)
-
-with col1:
-    st.header("Students scoring 90 and above")
-    st.pyplot(fig1)
-
-with col2:
-    st.header("Students scoring 100")
-    st.pyplot(fig2)
 
 """
 #### When bonus points are awarded to 80% of students.
@@ -339,6 +312,12 @@ st.write(df_1000_even_reject.agg(['mean','std']))
 
 
 st.write(df_1000_skew_reject.agg(['mean','std']))
+
+
+
+
+
+
 
 
 
