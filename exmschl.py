@@ -262,10 +262,10 @@ for i in range(8):
     ax[i,j].yaxis.label.set_visible(False)
     ax[i,j].yaxis.set_ticklabels([])        
 
-ax[0,0].set_title('Even Tiers \n N with score 90 and above', size = 16)
-ax[0,1].set_title('Skewed Tiers \n N with score 90 and above', size = 16)
-ax[0,2].set_title('Even Tiers \n N with score 100 and above', size = 16)
-ax[0,3].set_title('Skewed Tiers \n N with score 100 and above', size = 16)
+ax[0,0].set_title('Even tiers, score 90+', size = 20)
+ax[0,1].set_title('Skewed tiers, score 90+', size = 16)
+ax[0,2].set_title('Even tiers, score 100', size = 16)
+ax[0,3].set_title('Skewed tiers, score 100', size = 16)
 st.pyplot(fig)
 
 
@@ -288,6 +288,8 @@ for i, item in enumerate(df_skew_bonus_A):
   ax[i,0].set_ylabel('Tier ' + str(i +1), size = 14)
 
 for item in ax.flatten():
+  item.spines['top'].set_visible(False)
+  item.spines['right'].set_visible(False)
   item.set_xlim(20,300)
   item.axvline(125,0,300, color = 'r')
   item.grid(False)
@@ -303,10 +305,10 @@ for i in range(8):
     ax[i,j].yaxis.set_ticklabels([])        
 
 
-ax[0,0].set_title('Even Tiers \n N with score 90 and above', size = 16)
-ax[0,1].set_title('Skewed Tiers \n N with score 90 and above', size = 16)
-ax[0,2].set_title('Even Tiers \n N with score 100 and above', size = 16)
-ax[0,3].set_title('Skewed Tiers \n N with score 100 and above', size = 16)
+ax[0,0].set_title('Even tiers, score 90+', size = 16)
+ax[0,1].set_title('Skewed tiers, score 90+', size = 16)
+ax[0,2].set_title('Even tiers, score 100', size = 16)
+ax[0,3].set_title('Skewed tiers, score 100', size = 16)
 
 st.pyplot(fig)
 
