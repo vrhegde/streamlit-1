@@ -1,6 +1,5 @@
 import streamlit as st
 import pandas as pd
-import ipywidgets as widgets
 import random
 import numpy as np
 import matplotlib.pyplot as plt
@@ -263,9 +262,9 @@ for i in range(8):
     ax[i,j].yaxis.set_ticklabels([])        
 
 ax[0,0].set_title('Even tiers, score 90+', size = 20)
-ax[0,1].set_title('Skewed tiers, score 90+', size = 16)
-ax[0,2].set_title('Even tiers, score 100', size = 16)
-ax[0,3].set_title('Skewed tiers, score 100', size = 16)
+ax[0,1].set_title('Skewed tiers, score 90+', size = 22)
+ax[0,2].set_title('Even tiers, score 100', size = 24)
+ax[0,3].set_title('Skewed tiers, score 100', size = 26)
 st.pyplot(fig)
 
 
