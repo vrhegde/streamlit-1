@@ -233,7 +233,7 @@ with st.expander(" Explanatory note for the plots"):
 """
 #--------------------------------------------------Markdown text that will be displayed in the browser--------------------------------end
 
-fig, ax = plt.subplots(len(df_even_NoBonus_A.columns),4, figsize = (18, 15))
+fig, ax = plt.subplots(len(df_even_NoBonus_A.columns),4, figsize = (20, 15))
 for i, item in enumerate(df_even_NoBonus_A):
     df_even_NoBonus_A[item].hist(histtype = 'step', bins = 10, lw = 2, ax = ax[i,0])
     df_skew_NoBonus_A[item].hist(histtype = 'step', bins = 10, lw = 2, ax = ax[i,1])
@@ -243,7 +243,10 @@ for i, item in enumerate(df_even_NoBonus_A):
     ax[i,0].set_ylabel('Tier ' + str(i +1), size = 14)
 
 for item in ax.flatten():
+    item.spines['top'].set_visible(False)
+    item.spines['right'].set_visible(False)
     item.set_xlim(20,300)
+    item.set_ylim(0,25)
     item.axvline(125,0,250, color = 'r')
     item.grid(False)
 
