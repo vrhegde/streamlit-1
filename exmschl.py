@@ -257,8 +257,8 @@ st.pyplot(fig1)
 fig2, ax = plt.subplots(len(df_even_NoBonus_A.columns),2, figsize = (10, 15))
 for i, item in enumerate(df_even_NoBonus_Aplus):
     
-    df_even_NoBonus_Aplus[item].hist(histtype = 'step', bins = 10, lw = 2, ax = ax[i,2])
-    df_skew_NoBonus_Aplus[item].hist(histtype = 'step', bins = 10, lw = 2, ax = ax[i,3])
+    df_even_NoBonus_Aplus[item].hist(histtype = 'step', bins = 10, lw = 2, ax = ax[i,0])
+    df_skew_NoBonus_Aplus[item].hist(histtype = 'step', bins = 10, lw = 2, ax = ax[i,1])
 
     ax[i,0].set_ylabel('Tier ' + str(i +1), size = 14)
 
