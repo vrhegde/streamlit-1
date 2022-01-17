@@ -250,21 +250,22 @@ for item in ax.flatten():
     item.grid(False)
 
     
-    
+# get rid of x-ticks and lables for the first 7 rows    
 for i in range(7):
   for j in range(4):
     ax[i,j].xaxis.label.set_visible(False)
     ax[i,j].xaxis.set_ticklabels([])
 
+# get rid of y-ticks and lables for the last 3 columns    
 for i in range(8):
   for j in [1,2,3]:
     ax[i,j].yaxis.label.set_visible(False)
     ax[i,j].yaxis.set_ticklabels([])        
 
-ax[0,0].set_title('Even tiers, score 90+', size = 20)
+ax[0,0].set_title('Even tiers, score 90+', size = 22)
 ax[0,1].set_title('Skewed tiers, score 90+', size = 22)
-ax[0,2].set_title('Even tiers, score 100', size = 24)
-ax[0,3].set_title('Skewed tiers, score 100', size = 26)
+ax[0,2].set_title('Even tiers, score 100', size = 22)
+ax[0,3].set_title('Skewed tiers, score 100', size = 22)
 st.pyplot(fig)
 
 
@@ -293,21 +294,24 @@ for item in ax.flatten():
   item.axvline(125,0,300, color = 'r')
   item.grid(False)
 
+# get rid of x-ticks and lables for the first 7 rows
 for i in range(7):
   for j in range(4):
     ax[i,j].xaxis.label.set_visible(False)
     ax[i,j].xaxis.set_ticklabels([])
 
+
+# get rid of y-ticks and lables for the last 3 columns    
 for i in range(8):
   for j in [1,2,3]:
     ax[i,j].yaxis.label.set_visible(False)
     ax[i,j].yaxis.set_ticklabels([])        
 
 
-ax[0,0].set_title('Even tiers, score 90+', size = 16)
-ax[0,1].set_title('Skewed tiers, score 90+', size = 16)
-ax[0,2].set_title('Even tiers, score 100', size = 16)
-ax[0,3].set_title('Skewed tiers, score 100', size = 16)
+ax[0,0].set_title('Even tiers, score 90+', size = 22)
+ax[0,1].set_title('Skewed tiers, score 90+', size = 22)
+ax[0,2].set_title('Even tiers, score 100', size = 22)
+ax[0,3].set_title('Skewed tiers, score 100', size = 22)
 
 st.pyplot(fig)
 
