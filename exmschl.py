@@ -250,6 +250,18 @@ for item in ax.flatten():
     item.axvline(125,0,250, color = 'r')
     item.grid(False)
 
+    
+    
+for i in range(7):
+  for j in range(4):
+    ax[i,j].xaxis.label.set_visible(False)
+    ax[i,j].xaxis.set_ticklabels([])
+
+for i in range(8):
+  for j in [1,2,3]:
+    ax[i,j].yaxis.label.set_visible(False)
+    ax[i,j].yaxis.set_ticklabels([])        
+
 ax[0,0].set_title('Even Tiers \n N with score 90 and above', size = 16)
 ax[0,1].set_title('Skewed Tiers \n N with score 90 and above', size = 16)
 ax[0,2].set_title('Even Tiers \n N with score 100 and above', size = 16)
