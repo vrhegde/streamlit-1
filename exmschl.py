@@ -250,7 +250,7 @@ for item in ax.flatten():
 
 ax[0,0].set_title('Even Tiers \n N with score 90 and above', size = 16)
 ax[0,1].set_title('Skewed Tiers \n N with score 90 and above', size = 16)
-st.pyplot(fig1)
+#st.pyplot(fig1)
 
 
 
@@ -269,7 +269,7 @@ for item in ax.flatten():
 
 ax[0,0].set_title('Even Tiers \n N with score 100 and above', size = 16)
 ax[0,1].set_title('Skewed Tiers \n N with score 100 and above', size = 16)
-st.pyplot(fig2)
+#st.pyplot(fig2)
 
 #-----------------------------------------------------------------
 col1, col2 = st.columns(2)
