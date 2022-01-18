@@ -50,9 +50,7 @@ with st.expander("Methods"):
 
 
   """)
-#image_hist = Image.open('https://raw.githubusercontent.com/vrhegde/streamlit-1/main/exam_schl_simulation_app.png')
-#st.image(image_hist, caption='3 marla plot',use_column_width=True)
-st.image('https://raw.githubusercontent.com/vrhegde/streamlit-1/main/exam_schl_simulation_app.png', caption='3 marla plot',use_column_width=True)   
+
     
 #----------------------------------------Markwown text displayed in the browser ----------------------------end
 
@@ -229,7 +227,10 @@ with st.expander(" Explanatory note for the plots"):
         4. If the entire histogram is located to the left of the red line, then for all trial runs, there were more seats than students who scored above the specified cutoff. Conversely, when
         the entire histogram is located to the right of the redline, then there are more students than seats for every run of the n_trials. If the histogram straddles the redline, then there were
         some trials where there were more students (who scored above the cutoff) than seats, and some trials where there were less students (who scored above the cutoff) than there were seats.
-        """)
+        """
+             )
+        st.image('https://raw.githubusercontent.com/vrhegde/streamlit-1/main/exam_schl_simulation_app.png',use_column_width=True)   
+        
 """
 #### When no bonus points are awarded.
 """
