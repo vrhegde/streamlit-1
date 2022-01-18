@@ -50,6 +50,7 @@ with st.expander("Methods"):
 
   """)
 
+st.image('https://github.com/vrhegde/streamlit-1/blob/main/exam_schl_simulation_app.png',)        
     
 #----------------------------------------Markwown text displayed in the browser ----------------------------end
 
