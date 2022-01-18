@@ -249,8 +249,7 @@ for item in ax.flatten():
     item.spines['top'].set_visible(False)
     item.spines['right'].set_visible(False)
     item.set_xlim(20,300)
-    item.set_ylim(0,25)
-    item.axvline(125,0,250, color = 'r')
+    item.axvline(125,0,.95, color = 'r')
     item.grid(False)
 
     
@@ -295,7 +294,7 @@ for item in ax.flatten():
   item.spines['top'].set_visible(False)
   item.spines['right'].set_visible(False)
   item.set_xlim(20,300)
-  item.axvline(125,0,300, color = 'r')
+  item.axvline(125,0,.95, color = 'r')
   item.grid(False)
 
 # get rid of x-ticks and lables for the first 7 rows
