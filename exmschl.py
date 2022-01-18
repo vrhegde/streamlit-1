@@ -217,11 +217,11 @@ df_skew_NoBonus_Aplus = simulate_trials(make_data1,tier_skew, 100)
 with st.expander(" Explanatory note for the plots"):
     st.image('https://raw.githubusercontent.com/vrhegde/streamlit-1/main/exam_schl_simulation_app.png',use_column_width=True)   
     st.write("""
-        1. The x-axis shows the number of students with a score at or above a cutoff score. A cutoff score of 90 was used to generate plots in the two left most columns, and a cutoff of 100 was used to generat plots
-        for the two right most columns).
-
-        2. The y-axis counts the number of times, out of n repeated trials, a particular result was reached. For example if y-axis = 20 and x-axis = 200, and n_trials = 100, then there were 20
-        instances, out of 100 trials, when 200 students scored at or above the cutoff score.
+        1. At each trial, the number of students who score at or above a certain cutoff score is calculated. The simulation is run n number of times (thousand in the instance above)
+        and the results of these n trials are plotted as a histogram. This way we can estimate the upper and lower bounds of the distribution of possible results.
+       
+        2. The y-axis counts the number of times, out of n repeated trials, a particular result was reached. For example if y-axis = 100 and x-axis = 200, and n_trials = 1000, then there were 100
+        instances, out of 1000 trials, when 200 students scored at or above the cutoff score.
 
         3. The red line is set at 125, the number of seats available to each tier (calculated by dividing the total seats by the number of tiers).
 
