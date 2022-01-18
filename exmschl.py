@@ -324,7 +324,7 @@ st.pyplot(fig)
 """
 
 """
-### Percentage of students with perfect scores, but no bonus points, who are rejected.
+### Rejection rate for students with perfect scores, but without bonus points.
 In this section we will calculate what happens when students with perfect scores but no bonus points have to compete against students who will get the 
 bonus points. Assuming a uniform distribution of the grades (as before), as the number of students in the tier gets bigger, they will be competing more and more with 
 students who have good grades and have bonus points. Thus when you skew the tier sizing such that the upper tiers have a lot more students, and withold bonus points
