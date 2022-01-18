@@ -319,8 +319,18 @@ ax[0,3].set_title('Skewed tiers, score 100', size = 22)
 st.pyplot(fig)
 
 """
+
+
+"""
+
+"""
 ### Percentage of students with perfect scores, but no bonus points, who are rejected.
-The results of n trials to determine the percentage of students with perfect scores who will be rejected. As you run more trials (increase n), random noise will disappear.
+In this section we will calculate what happens when students with perfect scores but no bonus points have to compete against students who will get the 
+bonus points. Assuming a uniform distribution of the grades (as before), as the number of students in the tier gets bigger, they will be competing more and more with 
+students who have good grades and have bonus points. Thus when you skew the tier sizing such that the upper tiers have a lot more students, and withold bonus points
+from a minority of students, you ensure that admission to exam school for students without bonus points becomes virtually impossible.
+
+
 """
 
 
