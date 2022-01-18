@@ -215,7 +215,7 @@ df_skew_NoBonus_Aplus = simulate_trials(make_data1,tier_skew, 100)
 #--------------------------------------------------Markdown text that will be displayed in the browser------------------------------begin
 
 with st.expander(" Explanatory note for the plots"):
-    st.image('https://raw.githubusercontent.com/vrhegde/streamlit-1/main/exam_schl_simulation_app.png',use_column_width=True)   
+    st.image('https://raw.githubusercontent.com/vrhegde/streamlit-1/main/sim_hist_app.png',use_column_width=True)   
     st.write("""
         1. At each trial, the number of students who score at or above a certain cutoff score is calculated. The simulation is run n number of times (thousand in the instance above)
         and the results of these n trials are plotted as a histogram. This way we can estimate the upper and lower bounds of the distribution of possible results.
