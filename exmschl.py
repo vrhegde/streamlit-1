@@ -3,6 +3,7 @@ import pandas as pd
 import random
 import numpy as np
 import matplotlib.pyplot as plt
+from PIL import Image
 
 st.title('Boston Exam School Admissions')
 
@@ -49,8 +50,9 @@ with st.expander("Methods"):
 
 
   """)
-
-st.image('https://github.com/vrhegde/streamlit-1/blob/main/exam_schl_simulation_app.png',)        
+image_hist = Image.open(''https://github.com/vrhegde/streamlit-1/blob/main/exam_schl_simulation_app.png')
+st.image(image_hist, caption='3 marla plot',use_column_width=True)
+   
     
 #----------------------------------------Markwown text displayed in the browser ----------------------------end
 
