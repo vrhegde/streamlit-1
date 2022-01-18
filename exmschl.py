@@ -50,9 +50,9 @@ with st.expander("Methods"):
 
 
   """)
-image_hist = Image.open('https://raw.githubusercontent.com/vrhegde/streamlit-1/main/exam_schl_simulation_app.png')
-st.image(image_hist, caption='3 marla plot',use_column_width=True)
-   
+#image_hist = Image.open('https://raw.githubusercontent.com/vrhegde/streamlit-1/main/exam_schl_simulation_app.png')
+#st.image(image_hist, caption='3 marla plot',use_column_width=True)
+st.image('https://raw.githubusercontent.com/vrhegde/streamlit-1/main/exam_schl_simulation_app.png', caption='3 marla plot',use_column_width=True)   
     
 #----------------------------------------Markwown text displayed in the browser ----------------------------end
 
