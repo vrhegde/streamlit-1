@@ -215,7 +215,8 @@ df_skew_NoBonus_Aplus = simulate_trials(make_data1,tier_skew, 100)
 #--------------------------------------------------Markdown text that will be displayed in the browser------------------------------begin
 
 with st.expander(" Explanatory note for the plots"):
-     st.write("""
+    st.image('https://raw.githubusercontent.com/vrhegde/streamlit-1/main/exam_schl_simulation_app.png',use_column_width=True)   
+    st.write("""
         1. The x-axis shows the number of students with a score at or above a cutoff score. A cutoff score of 90 was used to generate plots in the two left most columns, and a cutoff of 100 was used to generat plots
         for the two right most columns).
 
@@ -227,9 +228,8 @@ with st.expander(" Explanatory note for the plots"):
         4. If the entire histogram is located to the left of the red line, then for all trial runs, there were more seats than students who scored above the specified cutoff. Conversely, when
         the entire histogram is located to the right of the redline, then there are more students than seats for every run of the n_trials. If the histogram straddles the redline, then there were
         some trials where there were more students (who scored above the cutoff) than seats, and some trials where there were less students (who scored above the cutoff) than there were seats.
-        """
-             )
-        st.image('https://raw.githubusercontent.com/vrhegde/streamlit-1/main/exam_schl_simulation_app.png',use_column_width=True)   
+        """)
+        
         
 """
 #### When no bonus points are awarded.
