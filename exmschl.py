@@ -258,8 +258,8 @@ with st.expander(" Explanatory note for the plots"):
 df_even_tiers_counts = count_applicants_tier_score(tier_even)
 df_skew_tiers_counts = count_applicants_tier_score(tier_skew)  
 
-#st.write(df_even_tiers_counts)
-#st.write(df_skew_tiers_counts)
+st.write(df_even_tiers_counts)
+st.write(df_skew_tiers_counts)
 
 #------------------------------------- calculate and display tables of scores per tier--------------------------------end  
 
