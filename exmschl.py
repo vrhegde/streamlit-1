@@ -316,7 +316,7 @@ from a minority of students, you ensure that admission to exam school for studen
 
 df_1000_even_reject = A_plus_rejected(tier_even, bonus_points = False) # Thousand trials, tiers are evenly distrubuted
 
-df_1000_skew_reject = A_plus_rejected(tier_skew,, bonus_points = True) # Thousand trials, tiers are skewed
+df_1000_skew_reject = A_plus_rejected(tier_skew, bonus_points = True) # Thousand trials, tiers are skewed
 
 
 
