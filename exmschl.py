@@ -195,6 +195,7 @@ def A_plus_rejected(dist_list,bonus_points = True):
 
 
 def count_applicants_tier_score(tier_type):
+    
     """
     This function counts the total number of applicants for each tier and raw score, and does so a hundred times
     """
