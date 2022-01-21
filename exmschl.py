@@ -87,7 +87,7 @@ seats_per_tier = total_seats/8
 tier_even =  p=[.125,.125,.125,.125,.125,.125,.125,.125]
 
 # Unevenly distrubuted tier sizes, with larger tiers at the upper end.
-tier_skew =  p=[0.09, 0.1, 0.11, 0.11, 0.12, 0.13, 0.16, 0.18]
+tier_skew =  p=[0.09, 0.1, 0.11, 0.12, 0.13, 0.14, 0.15, 0.16]
 
 #----------------------------------set variables--------------------end
 
@@ -231,6 +231,38 @@ def count_applicants_tier_score(tier_type):
 
 
 
+    
+    
+    
+    
+#------------------------------------- calculate and display tables of scores per tier--------------------------------begin   
+    
+df_even_tiers_counts = count_applicants_tier_score(tier_even)
+df_skew_tiers_counts = count_applicants_tier_score(tier_skew)  
+"""
+### Average number of students per tier, per GPA. 
+The following two tables demonstrate the distribution of students by GPA, in each tier. 
+When an even distribution of students is assumed, the number os students in each tier is calculated by dividing the total number of 
+eligible applicants (specified in the input form) by 8 (total number of tiers. To calculate the effect of unevenly sized tiers, the following probablities are used to calculate the number of students in each tier.
+tier1 = 9%, tier2 = 10%, tier3 = 11%, tier4 = 12 %, tier5= 13 %, tier6 = 14%, tier7 = 0.15, tier8 = 16%. The total of these probablities adds up to 100%. 
+
+The table columns Indicate grades thus: grade B= 8, grade B+ = 9, grade A- = 10, grade A = 11. This association of grades with a 11 point scale is what BPS 
+has proposed to use. In prior years, a 12 point scale, with grade A+ = 12 was used. But BPS has informed the school committee that they intend to eliminate A+ 
+in their calculation for exam school admissions, and the maximum grade allowed wil be A (all A+ to be downgraded to A)
+"""
+
+"""
+##### Even tier distribution
+"""
+st.write(df_even_tiers_counts)
+
+"""
+##### Skewed tier distribution
+"""
+st.write(df_skew_tiers_counts)
+
+#------------------------------------- calculate and display tables of scores per tier--------------------------------end  
+
 #--------------------------Markdown text that will be displayed in the browser-------------begin
 
 with st.expander(" Explanatory note for the plots"):
@@ -249,26 +281,6 @@ with st.expander(" Explanatory note for the plots"):
         some trials where there were more students (who scored above the cutoff) than seats, and some trials where there were less students (who scored above the cutoff) than there were seats.
         """)
 #-------------------------Markdown text that will be displayed in the browser--------------end
-    
-    
-    
-    
-#------------------------------------- calculate and display tables of scores per tier--------------------------------begin   
-    
-df_even_tiers_counts = count_applicants_tier_score(tier_even)
-df_skew_tiers_counts = count_applicants_tier_score(tier_skew)  
-"""
-##### Even tiers, total students and distribution of grades
-columns Indicate grades. 8 = B, 9 = B+, 10= A-, 11= A
-"""
-st.write(df_even_tiers_counts)
-
-"""
-##### Skewed tiers, total students and distribution of grades
-"""
-st.write(df_skew_tiers_counts)
-
-#------------------------------------- calculate and display tables of scores per tier--------------------------------end  
 
 
 df_even_NoBonus_A = simulate_trials(make_data,tier_even, 90,bonus_points = False)
@@ -278,6 +290,9 @@ df_skew_NoBonus_A = simulate_trials(make_data,tier_skew, 90,bonus_points = False
 df_even_NoBonus_Aplus = simulate_trials(make_data,tier_even, 100,bonus_points = False)
 
 df_skew_NoBonus_Aplus = simulate_trials(make_data,tier_skew, 100,bonus_points = False)
+
+
+
 """
 #### When no bonus points are awarded.
 """
