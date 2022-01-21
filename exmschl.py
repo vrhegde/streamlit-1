@@ -63,7 +63,7 @@ form1 = st.sidebar.form(key ='options')
 
 form1.header('Input Parameters')
 
-num_stu = form1.number_input('Total eligible students', min_value = 400, max_value = 6000, value = 3000, step =200)
+num_stu = form1.number_input('Total eligible students', min_value = 400, max_value = 6000, value = 2100, step =200)
 
 num_seats = form1.number_input('Total seats available', min_value = 3, max_value = 1500, value = 1000, step = 10)
 
