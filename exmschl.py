@@ -184,13 +184,13 @@ def A_plus_rejected(dist_list,bonus_points = False):
 
 
 
-df_even_NoBonus_A = simulate_trials(make_data1,tier_even, 90,bonus_points = False)
+df_even_NoBonus_A = simulate_trials(make_data,tier_even, 90,bonus_points = False)
 
-df_skew_NoBonus_A = simulate_trials(make_data1,tier_skew, 90,bonus_points = False)
+df_skew_NoBonus_A = simulate_trials(make_data,tier_skew, 90,bonus_points = False)
 
-df_even_NoBonus_Aplus = simulate_trials(make_data1,tier_even, 100,bonus_points = False)
+df_even_NoBonus_Aplus = simulate_trials(make_data,tier_even, 100,bonus_points = False)
 
-df_skew_NoBonus_Aplus = simulate_trials(make_data1,tier_skew, 100,bonus_points = False)
+df_skew_NoBonus_Aplus = simulate_trials(make_data,tier_skew, 100,bonus_points = False)
 
 #--------------------------------------------------Markdown text that will be displayed in the browser------------------------------begin
 
@@ -256,10 +256,10 @@ st.pyplot(fig)
 """
 #### When bonus points are awarded to 80% of students.
 """
-df_skew_bonus_A = simulate_trials(make_data2,tier_skew,90, bonus_points = True)
-df_even_bonus_A = simulate_trials(make_data2, tier_even,90, bonus_points = True)
-df_skew_bonus_Aplus = simulate_trials(make_data2,tier_skew,100, bonus_points = True)
-df_even_bonus_Aplus = simulate_trials(make_data2, tier_even,100, bonus_points = True)
+df_skew_bonus_A = simulate_trials(make_data,tier_skew,90, bonus_points = True)
+df_even_bonus_A = simulate_trials(make_data, tier_even,90, bonus_points = True)
+df_skew_bonus_Aplus = simulate_trials(make_data,tier_skew,100, bonus_points = True)
+df_even_bonus_Aplus = simulate_trials(make_data, tier_even,100, bonus_points = True)
 
 fig, ax = plt.subplots(len(df_skew_bonus_A.columns),4, figsize = (18, 15))
 for i, item in enumerate(df_skew_bonus_A):
