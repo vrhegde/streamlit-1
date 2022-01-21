@@ -165,9 +165,9 @@ def A_plus_rejected(dist_list,bonus_points = True):
       rejected_df = wrk_df.iloc[125:]
       
       # count number of accepted students who are A +
-      accepted_num = accepted_df[(accepted_df['raw_score']>11) & (accepted_df['bonus']== 0)]['raw_score'].agg('count')
+      accepted_num = accepted_df[(accepted_df['raw_score']>10) & (accepted_df['bonus']== 0)]['raw_score'].agg('count')
       # count number of rejected students who are A +
-      rejected_num = rejected_df[(rejected_df['raw_score']>11) & (rejected_df['bonus']== 0)]['raw_score'].agg('count')
+      rejected_num = rejected_df[(rejected_df['raw_score']>10) & (rejected_df['bonus']== 0)]['raw_score'].agg('count')
      
       #Calculate rejection rate, convert to percent and round to 2 decimal places
       reject_rate = round((rejected_num/(rejected_num + accepted_num)) *100,2)
