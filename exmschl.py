@@ -85,7 +85,7 @@ tier_skew =  p=[0.09, 0.1, 0.11, 0.11, 0.12, 0.13, 0.16, 0.18]
 
 
 
-def make_data1(tier_prob_dist):
+def make_data(tier_prob_dist,  bonus_points = False):
   """
   This function takes in a list with specified array of probablities and generates a dataframe of with n_student rows.
   The columns specify the tiers, absence or presence of bonus points (0,1) and raw scores.
@@ -106,37 +106,17 @@ def make_data1(tier_prob_dist):
   sim_df = pd.DataFrame(zip(keys_col,tier_col,bonus_col,raw_score), columns = ['keys','tier','bonus','raw_score'])
   sim_df['scaled_score'] = sim_df.raw_score * (100/11)
   sim_df['scaled_score'] = sim_df['scaled_score'].round(2)
-  sim_df['final_score'] = sim_df['scaled_score'] + sim_df.bonus * 0
-  return sim_df
-
-
-def make_data2(tier_prob_dist):
-  """
-  This function takes in a list with specified array of probablities and generates a dataframe of with n_student rows.
-  The columns specify the tiers, absence or presence of bonus points (0,1) and raw scores.
-
-  Raw scores are randomly generated to range from 7 to 12 (grades B to A +).
-  Bonus points are 80% randomly assigned to 80% of students.
-  Tier is randomly assigned, according to the specified array of probablities.
-  Scaled scores are calculated by multiplying raw score by 100/12.
-  Final scores are calculated by adding 10 points to scaled score if student has bonus points.
-
-  """
+  if bonus_points == True:
+    sim_df['final_score'] = sim_df['scaled_score'] + sim_df.bonus * 10
+  else:
+    sim_df['final_score'] = sim_df['scaled_score'] + sim_df.bonus * 0
   
-  keys_col = np.arange(0,n_students,1)  #student identifier from 0-2500
-  tier_col = np.random.choice(np.arange(1, 9),size = [n_students,1], p = tier_prob_dist).flatten().tolist() # generate a list to poppulate the tier column
-  bonus_col = np.random.choice(a=[1,0], size=(n_students,1), p=[.8,.2]).flatten().tolist() # generate a list to poppulate the tier column
-  raw_score = np.random.randint(7, 13, [n_students,1]).flatten().tolist()
-
-  sim_df = pd.DataFrame(zip(keys_col,tier_col,bonus_col,raw_score), columns = ['keys','tier','bonus','raw_score'])
-  sim_df['scaled_score'] = sim_df.raw_score * (100/12)
-  sim_df['scaled_score'] = sim_df['scaled_score'].round(2)
-  sim_df['final_score'] = sim_df['scaled_score'] + sim_df.bonus * 10
   return sim_df
 
 
 
-def simulate_trials(input_func, dist_list,cutoff_score):
+
+def simulate_trials(input_func, dist_list,cutoff_score,bonus_points = False):
   """
   The aim of this function is to return a dataframe with each row representing a trial and each column representing a tier with values representing
   the count of students at or above a certain cutoff.
@@ -150,7 +130,7 @@ def simulate_trials(input_func, dist_list,cutoff_score):
 
   results_list = [] # list to aggregate the results
   for i in range(n_trials):
-    df_input= input_func(dist_list) # make a simulated random dataframe
+    df_input= input_func(dist_list,bonus_points) # make a simulated random dataframe
     df_input['bonus'] = [0] * len(df_input)  #remove bonus points from all data
     result = df_input[df_input['final_score']>= cutoff_score].groupby('tier')['raw_score'].agg('count') #groupby tiers and count the n that scored above the cutoff score.
     results_list.append(result) #append to list
@@ -160,7 +140,7 @@ def simulate_trials(input_func, dist_list,cutoff_score):
 
 
 
-def A_plus_rejected(dist_list):
+def A_plus_rejected(dist_list,bonus_points = False):
   """
   The aim of this function is to return a dataframe with each row representing a trial and each column representing a tier with values representing
   the count of students at or above a certain cutoff.
@@ -173,7 +153,7 @@ def A_plus_rejected(dist_list):
   
   list_outer = [] # list to aggregate the results. Will be used to make the dataframe
   for i in range(n_trials): #specifies the number of runs
-    df_input= make_data2(dist_list) # make a simulated random dataframe
+    df_input= make_data(dist_list, bonus_points) # make a simulated random dataframe
     
     list_inner = []
     for item in np.arange(1,9,1): # each cycle evaluates a tier
@@ -204,13 +184,13 @@ def A_plus_rejected(dist_list):
 
 
 
-df_even_NoBonus_A = simulate_trials(make_data1,tier_even, 90)
+df_even_NoBonus_A = simulate_trials(make_data1,tier_even, 90,bonus_points = False)
 
-df_skew_NoBonus_A = simulate_trials(make_data1,tier_skew, 90)
+df_skew_NoBonus_A = simulate_trials(make_data1,tier_skew, 90,bonus_points = False)
 
-df_even_NoBonus_Aplus = simulate_trials(make_data1,tier_even, 100)
+df_even_NoBonus_Aplus = simulate_trials(make_data1,tier_even, 100,bonus_points = False)
 
-df_skew_NoBonus_Aplus = simulate_trials(make_data1,tier_skew, 100)
+df_skew_NoBonus_Aplus = simulate_trials(make_data1,tier_skew, 100,bonus_points = False)
 
 #--------------------------------------------------Markdown text that will be displayed in the browser------------------------------begin
 
@@ -276,10 +256,10 @@ st.pyplot(fig)
 """
 #### When bonus points are awarded to 80% of students.
 """
-df_skew_bonus_A = simulate_trials(make_data2,tier_skew,90)
-df_even_bonus_A = simulate_trials(make_data2, tier_even,90)
-df_skew_bonus_Aplus = simulate_trials(make_data2,tier_skew,100)
-df_even_bonus_Aplus = simulate_trials(make_data2, tier_even,100)
+df_skew_bonus_A = simulate_trials(make_data2,tier_skew,90, bonus_points = True)
+df_even_bonus_A = simulate_trials(make_data2, tier_even,90, bonus_points = True)
+df_skew_bonus_Aplus = simulate_trials(make_data2,tier_skew,100, bonus_points = True)
+df_even_bonus_Aplus = simulate_trials(make_data2, tier_even,100, bonus_points = True)
 
 fig, ax = plt.subplots(len(df_skew_bonus_A.columns),4, figsize = (18, 15))
 for i, item in enumerate(df_skew_bonus_A):
@@ -334,9 +314,9 @@ from a minority of students, you ensure that admission to exam school for studen
 """
 
 
-df_1000_even_reject = A_plus_rejected(tier_even) # Thousand trials, tiers are evenly distrubuted
+df_1000_even_reject = A_plus_rejected(tier_even, bonus_points = False) # Thousand trials, tiers are evenly distrubuted
 
-df_1000_skew_reject = A_plus_rejected(tier_skew) # Thousand trials, tiers are skewed
+df_1000_skew_reject = A_plus_rejected(tier_skew,, bonus_points = True) # Thousand trials, tiers are skewed
 
 
 
