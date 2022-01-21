@@ -140,7 +140,7 @@ def simulate_trials(input_func, dist_list,cutoff_score,bonus_points = False):
 
 
 
-def A_plus_rejected(dist_list,bonus_points = False):
+def A_plus_rejected(dist_list,bonus_points = True):
   """
   The aim of this function is to return a dataframe with each row representing a trial and each column representing a tier with values representing
   the count of students at or above a certain cutoff.
@@ -314,9 +314,9 @@ from a minority of students, you ensure that admission to exam school for studen
 """
 
 
-df_1000_even_reject = A_plus_rejected(tier_even, bonus_points = False) # Thousand trials, tiers are evenly distrubuted
+df_1000_even_reject = A_plus_rejected(tier_even) # Thousand trials, tiers are evenly distrubuted
 
-df_1000_skew_reject = A_plus_rejected(tier_skew, bonus_points = True) # Thousand trials, tiers are skewed
+df_1000_skew_reject = A_plus_rejected(tier_skew) # Thousand trials, tiers are skewed
 
 
 
