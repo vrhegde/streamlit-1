@@ -259,6 +259,7 @@ df_even_tiers_counts = count_applicants_tier_score(tier_even)
 df_skew_tiers_counts = count_applicants_tier_score(tier_skew)  
 """
 ##### Even tiers, total students and distribution of grades
+columns Indicate grades. 8 = B, 9 = B+, 10= A-, 11= A
 """
 st.write(df_even_tiers_counts)
 
