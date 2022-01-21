@@ -218,7 +218,7 @@ def count_applicants_tier_score(tier_type):
         list_of_grpby.append(new_series)
     result_df = pd.DataFrame(list_of_grpby) #make a df from all of the serieses collected
     result_df['total_applicants'] = result_df.sum(axis = 1) #Add a column for the total for each row.
-    #result_df = result_df.T # Transpose the df to have tiers as columns and scores as rows. Divide by 100 since 100 simulations were used.
+    result_df = result_df/n_trials # Transpose the df to have tiers as columns and scores as rows. Divide by 100 since 100 simulations were used.
     #result_df.columns = ['tier1','tier2','tier3','tier4','tier5','tier6','tier7','tier8'] #name the columns
     return result_df
 
