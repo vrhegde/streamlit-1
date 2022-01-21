@@ -198,28 +198,29 @@ def A_plus_rejected(dist_list,bonus_points = True):
 
 def count_applicants_tier_score(tier_type):
     
+        
     """
     This function counts the total number of applicants for each tier and raw score, and does so a hundred times
     """
-  
 
-  list_to_agg = [] #to collect each df made with the following loop
-  for i in range(n_trials): # run the make_df function a 100 times
-    list_to_agg.append(make_data(tier_type))
-  new_df = pd.concat(list_to_agg) #concate all the df made into one long df
 
-  new_df = new_df[['tier','raw_score']] #subset to get only the columns you want
-  
-  list_of_grpby = [] #to collect each series made with the following loop
-  for i in range(1,9): # numbers 1 to 8, for tiers
-    wrk_df = new_df[new_df['tier'] == i] #subset for each tier
+    list_to_agg = [] #to collect each df made with the following loop
+    for i in range(n_trials): # run the make_df function a 100 times
+       list_to_agg.append(make_data(tier_type))
+    new_df = pd.concat(list_to_agg) #concate all the df made into one long df
+
+    new_df = new_df[['tier','raw_score']] #subset to get only the columns you want
+
+    list_of_grpby = [] #to collect each series made with the following loop
+    for i in range(1,9): # numbers 1 to 8, for tiers
+       wrk_df = new_df[new_df['tier'] == i] #subset for each tier
     new_series = wrk_df.groupby('raw_score')['tier'].count() #count the numbers for each score
     list_of_grpby.append(new_series)
-  result_df = pd.DataFrame(list_of_grpby) #make a df from all of the serieses collected
-  result_df['total_applicants'] = result_df.sum(axis = 1) #Add a column for the total for each row.
-  result_df = result_df.T/n_trials # Transpose the df to have tiers as columns and scores as rows. Divide by 100 since 100 simulations were used.
-  result_df.columns = ['tier1','tier2','tier3','tier4','tier5','tier6','tier7','tier8'] #name the columns
-  return result_df
+    result_df = pd.DataFrame(list_of_grpby) #make a df from all of the serieses collected
+    result_df['total_applicants'] = result_df.sum(axis = 1) #Add a column for the total for each row.
+    result_df = result_df.T/n_trials # Transpose the df to have tiers as columns and scores as rows. Divide by 100 since 100 simulations were used.
+    result_df.columns = ['tier1','tier2','tier3','tier4','tier5','tier6','tier7','tier8'] #name the columns
+    return result_df
 
 
 #-----------------------------------------------------------Functions ------------------------------------------------end
