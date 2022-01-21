@@ -98,6 +98,7 @@ tier_skew =  p=[0.09, 0.1, 0.11, 0.11, 0.12, 0.13, 0.16, 0.18]
 #--------------------------------------------------Functions -------------------------------------begin
 
 def make_data(tier_prob_dist,  bonus_points = False):
+    
   """
   This function takes in a list with specified array of probablities and generates a dataframe of with n_student rows.
   The columns specify the tiers, absence or presence of bonus points (0,1) and raw scores.
@@ -152,46 +153,47 @@ def simulate_trials(input_func, dist_list,cutoff_score,bonus_points = False):
 
 
 def A_plus_rejected(dist_list,bonus_points = True):
-  """
-  The aim of this function is to return a dataframe with each row representing a trial and each column representing a tier with values representing
-  the count of students at or above a certain cutoff.
-  This function takes in two inputs: 1) Number of trials. 2) List of distribution probablities.
-  The list of distribution probablities contains 8 elements, each of which is a numeric, the total of 8 adding up to 1 (total probablity == 1)
-  It creates the simulated random data, a specified number of times.
-  At each run, it calculates the percent of students who have scored above a prespecified cutoff, for each tier, and not been accepted. The resultant series is stored.
-  All of the serieses thus produced are stored in a list. This list is stored in a dataframe. The dataframe is returned.
-  """
-  
-  list_outer = [] # list to aggregate the results. Will be used to make the dataframe
-  for i in range(n_trials): #specifies the number of runs
-    df_input= make_data(dist_list, bonus_points) # make a simulated random dataframe
-    
-    list_inner = []
-    for item in np.arange(1,9,1): # each cycle evaluates a tier
-      #make working df by subseting by tier and sorting in descending order
-      wrk_df = df_input[df_input['tier']== item].sort_values('final_score',ascending = False)
-      # Select top 125 students
-      accepted_df = wrk_df.iloc[:125]
-      # reject the students ranked below 125
-      rejected_df = wrk_df.iloc[125:]
-      
-      # count number of accepted students who are A +
-      accepted_num = accepted_df[(accepted_df['raw_score']>10) & (accepted_df['bonus']== 0)]['raw_score'].agg('count')
-      # count number of rejected students who are A +
-      rejected_num = rejected_df[(rejected_df['raw_score']>10) & (rejected_df['bonus']== 0)]['raw_score'].agg('count')
-     
-      #Calculate rejection rate, convert to percent and round to 2 decimal places
-      reject_rate = round((rejected_num/(rejected_num + accepted_num)) *100,2)
-      # Add to inner list
-      list_inner.append(reject_rate)
-    
-    
-    list_outer.append(list_inner) # list to aggregate the results. Will be used to make the dataframe------
-    
-    
-  sim_df = pd.DataFrame(list_outer) #convert the list to a df
-  sim_df.columns = ['tier1','tier2','tier3','tier4','tier5','tier6','tier7','tier8',]
-  return sim_df
+
+      """
+      The aim of this function is to return a dataframe with each row representing a trial and each column representing a tier with values representing
+      the count of students at or above a certain cutoff.
+      This function takes in two inputs: 1) Number of trials. 2) List of distribution probablities.
+      The list of distribution probablities contains 8 elements, each of which is a numeric, the total of 8 adding up to 1 (total probablity == 1)
+      It creates the simulated random data, a specified number of times.
+      At each run, it calculates the percent of students who have scored above a prespecified cutoff, for each tier, and not been accepted. The resultant series is stored.
+      All of the serieses thus produced are stored in a list. This list is stored in a dataframe. The dataframe is returned.
+      """
+
+      list_outer = [] # list to aggregate the results. Will be used to make the dataframe
+      for i in range(n_trials): #specifies the number of runs
+        df_input= make_data(dist_list, bonus_points) # make a simulated random dataframe
+
+        list_inner = []
+        for item in np.arange(1,9,1): # each cycle evaluates a tier
+          #make working df by subseting by tier and sorting in descending order
+          wrk_df = df_input[df_input['tier']== item].sort_values('final_score',ascending = False)
+          # Select top 125 students
+          accepted_df = wrk_df.iloc[:125]
+          # reject the students ranked below 125
+          rejected_df = wrk_df.iloc[125:]
+
+          # count number of accepted students who are A +
+          accepted_num = accepted_df[(accepted_df['raw_score']>10) & (accepted_df['bonus']== 0)]['raw_score'].agg('count')
+          # count number of rejected students who are A +
+          rejected_num = rejected_df[(rejected_df['raw_score']>10) & (rejected_df['bonus']== 0)]['raw_score'].agg('count')
+
+          #Calculate rejection rate, convert to percent and round to 2 decimal places
+          reject_rate = round((rejected_num/(rejected_num + accepted_num)) *100,2)
+          # Add to inner list
+          list_inner.append(reject_rate)
+
+
+        list_outer.append(list_inner) # list to aggregate the results. Will be used to make the dataframe------
+
+
+      sim_df = pd.DataFrame(list_outer) #convert the list to a df
+      sim_df.columns = ['tier1','tier2','tier3','tier4','tier5','tier6','tier7','tier8',]
+      return sim_df
 
 
 def count_applicants_tier_score(tier_type):
