@@ -50,9 +50,13 @@ with st.expander("Methods"):
 
 
   """)
-
     
 #----------------------------------------Markwown text displayed in the browser ----------------------------end
+
+
+
+
+
 
 #-------------------------------------------Input form---------------begin
 form1 = st.sidebar.form(key ='options')
@@ -69,6 +73,8 @@ form1.form_submit_button('Submit changes')
 #-------------------------------------------Input form----------------end
 
 
+
+#----------------------------------set variables--------------------begin
 n_students =  num_stu
 
 total_seats =  num_seats
@@ -83,7 +89,13 @@ tier_even =  p=[.125,.125,.125,.125,.125,.125,.125,.125]
 # Unevenly distrubuted tier sizes, with larger tiers at the upper end.
 tier_skew =  p=[0.09, 0.1, 0.11, 0.11, 0.12, 0.13, 0.16, 0.18]
 
+#----------------------------------set variables--------------------end
 
+
+
+
+
+#--------------------------------------------------Functions -------------------------------------begin
 
 def make_data(tier_prob_dist,  bonus_points = False):
   """
@@ -112,7 +124,6 @@ def make_data(tier_prob_dist,  bonus_points = False):
     sim_df['final_score'] = sim_df['scaled_score'] + sim_df.bonus * 0
   
   return sim_df
-
 
 
 
@@ -183,16 +194,40 @@ def A_plus_rejected(dist_list,bonus_points = True):
   return sim_df
 
 
+def count_applicants_tier_score(tier_type):
+    """
+    This function counts the total number of applicants for each tier and raw score, and does so a hundred times
+    """
+  
 
-df_even_NoBonus_A = simulate_trials(make_data,tier_even, 90,bonus_points = False)
+  list_to_agg = [] #to collect each df made with the following loop
+  for i in range(n_trials): # run the make_df function a 100 times
+    list_to_agg.append(make_data(tier_type))
+  new_df = pd.concat(list_to_agg) #concate all the df made into one long df
 
-df_skew_NoBonus_A = simulate_trials(make_data,tier_skew, 90,bonus_points = False)
+  new_df = new_df[['tier','raw_score']] #subset to get only the columns you want
+  
+  list_of_grpby = [] #to collect each series made with the following loop
+  for i in range(1,9): # numbers 1 to 8, for tiers
+    wrk_df = new_df[new_df['tier'] == i] #subset for each tier
+    new_series = wrk_df.groupby('raw_score')['tier'].count() #count the numbers for each score
+    list_of_grpby.append(new_series)
+  result_df = pd.DataFrame(list_of_grpby) #make a df from all of the serieses collected
+  result_df['total_applicants'] = result_df.sum(axis = 1) #Add a column for the total for each row.
+  result_df = result_df.T/n_trials # Transpose the df to have tiers as columns and scores as rows. Divide by 100 since 100 simulations were used.
+  result_df.columns = ['tier1','tier2','tier3','tier4','tier5','tier6','tier7','tier8'] #name the columns
+  return result_df
 
-df_even_NoBonus_Aplus = simulate_trials(make_data,tier_even, 100,bonus_points = False)
 
-df_skew_NoBonus_Aplus = simulate_trials(make_data,tier_skew, 100,bonus_points = False)
+#-----------------------------------------------------------Functions ------------------------------------------------end
 
-#--------------------------------------------------Markdown text that will be displayed in the browser------------------------------begin
+
+
+
+
+
+
+#--------------------------Markdown text that will be displayed in the browser-------------begin
 
 with st.expander(" Explanatory note for the plots"):
     st.image('https://raw.githubusercontent.com/vrhegde/streamlit-1/main/sim_hist_app.png',use_column_width=True)   
@@ -209,12 +244,33 @@ with st.expander(" Explanatory note for the plots"):
         the entire histogram is located to the right of the redline, then there are more students than seats for every run of the n_trials. If the histogram straddles the redline, then there were
         some trials where there were more students (who scored above the cutoff) than seats, and some trials where there were less students (who scored above the cutoff) than there were seats.
         """)
-        
-        
+#-------------------------Markdown text that will be displayed in the browser--------------end
+    
+    
+    
+    
+#------------------------------------- calculate and display tables of scores per tier--------------------------------begin   
+    
+df_even_tiers_counts = count_applicants_tier_score(tier_even)
+df_skew_tiers_counts = count_applicants_tier_score(tier_skew)  
+
+st.write('Even Tiers',df_even_tiers_counts)
+st.write('Skewed Tiers',df_skew_tiers_counts)
+
+#------------------------------------- calculate and display tables of scores per tier--------------------------------end  
+
+
+df_even_NoBonus_A = simulate_trials(make_data,tier_even, 90,bonus_points = False)
+
+df_skew_NoBonus_A = simulate_trials(make_data,tier_skew, 90,bonus_points = False)
+
+df_even_NoBonus_Aplus = simulate_trials(make_data,tier_even, 100,bonus_points = False)
+
+df_skew_NoBonus_Aplus = simulate_trials(make_data,tier_skew, 100,bonus_points = False)
 """
 #### When no bonus points are awarded.
 """
-#--------------------------------------------------Markdown text that will be displayed in the browser--------------------------------end
+
 
 fig, ax = plt.subplots(len(df_even_NoBonus_A.columns),4, figsize = (20, 15))
 for i, item in enumerate(df_even_NoBonus_A):
