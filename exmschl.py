@@ -30,7 +30,7 @@ st.title('Boston Exam School Admissions')
     The aim of this project is to demonstrate the effect of bonus points, and of using unevenly distributed tiers, on the probability of admission to selective schools. In this project, we will generate synthetic data (within the bounds of what we know from previous admission cycles) and run repeated simulations to determine the probability distribution of admissions to these schools.
 """
 
-with st.expander("Methods"):
+with st.expander("Methods (expand for details)"):
      st.write("""
      We will first create synthetic data using two different methods. The first without bonus points, and the second with bonus points. We will create two tier distributions: First, tiers that have the same number of students (Even Distribution); second, with more students in the upper tiers (Skewed Distribution). For the skewed tier distribution, relative distribution of students per tier will be estimated by data presented by the school committee and the exam school task force.
 
@@ -263,6 +263,21 @@ st.write(df_skew_tiers_counts)
 
 #------------------------------------- calculate and display tables of scores per tier--------------------------------end  
 
+
+
+df_even_NoBonus_A = simulate_trials(make_data,tier_even, 90,bonus_points = False)
+
+df_skew_NoBonus_A = simulate_trials(make_data,tier_skew, 90,bonus_points = False)
+
+df_even_NoBonus_Aplus = simulate_trials(make_data,tier_even, 100,bonus_points = False)
+
+df_skew_NoBonus_Aplus = simulate_trials(make_data,tier_skew, 100,bonus_points = False)
+
+
+
+"""
+#### When no bonus points are awarded.
+"""
 #--------------------------Markdown text that will be displayed in the browser-------------begin
 
 with st.expander(" Explanatory note for the plots"):
@@ -281,21 +296,6 @@ with st.expander(" Explanatory note for the plots"):
         some trials where there were more students (who scored above the cutoff) than seats, and some trials where there were less students (who scored above the cutoff) than there were seats.
         """)
 #-------------------------Markdown text that will be displayed in the browser--------------end
-
-
-df_even_NoBonus_A = simulate_trials(make_data,tier_even, 90,bonus_points = False)
-
-df_skew_NoBonus_A = simulate_trials(make_data,tier_skew, 90,bonus_points = False)
-
-df_even_NoBonus_Aplus = simulate_trials(make_data,tier_even, 100,bonus_points = False)
-
-df_skew_NoBonus_Aplus = simulate_trials(make_data,tier_skew, 100,bonus_points = False)
-
-
-
-"""
-#### When no bonus points are awarded.
-"""
 
 
 fig, ax = plt.subplots(len(df_even_NoBonus_A.columns),4, figsize = (20, 15))
