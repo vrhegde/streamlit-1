@@ -282,9 +282,13 @@ df_skew_tiers_counts, skew_tiers_mean_scores = count_applicants_tier_score(tier_
 """
 ### Average number of students per tier, per GPA. 
 The following two tables demonstrate the distribution of students by GPA, in each tier. 
-When an even distribution of students is assumed, the number os students in each tier is calculated by dividing the total number of 
-eligible applicants (specified in the input form) by 8 (total number of tiers. To calculate the effect of unevenly sized tiers, the following probablities are used to calculate the number of students in each tier.
-tier1 = 9%, tier2 = 10%, tier3 = 11%, tier4 = 12 %, tier5= 13 %, tier6 = 14%, tier7 = 0.15, tier8 = 16%. The total of these probablities adds up to 100%. 
+When an even distribution of students is assumed, the number of students in each tier is calculated by dividing the total number of 
+eligible applicants (specified in the input form) by 8 (total number of tiers. To calculate the effect of unevenly sized tiers, we use the following probablities
+are used as default to calculate the number of students in each tier. Tier1 = 9%, tier2 = 10%, tier3 = 11%, tier4 = 12 %, tier5= 13 %, tier6 = 14%, tier7 = 0.15, tier8 = 16%. 
+The total of these probablities adds up to 100%. We can also use a more skewed distribution ('skew 2') in setting the parameters for calculation. For 'skew 2'
+the following probablities are used Tier1 = 7%, tier2 = 8%, tier3 = 9%, tier4 = 10 %, tier5= 12 %, tier6 = 15%, tier7 = 0.18, tier8 = 21%. Using the toggle radio button in the input
+form, you can simulate both distributions.
+
 
 The table columns Indicate grades thus: grade B= 8, grade B+ = 9, grade A- = 10, grade A = 11. This association of grades with a 11 point scale is what BPS 
 has proposed to use. In prior years, a 12 point scale, with grade A+ = 12 was used. But BPS has informed the school committee that they intend to eliminate A+ 
