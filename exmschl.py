@@ -242,11 +242,7 @@ def count_applicants_tier_score(tier_type):
     result_df.index = ['tier1','tier2','tier3','tier4','tier5','tier6','tier7','tier8'] #name the columns
     
     #--------part 2------ calculates average score of accepted for each tier
-    """
-    In the following code, I will take the list of dfs created initially, calculate the top 125 for each tier (using head(125)), 
-    and make a new concated df with all of the top 125 per tier dataframes. I will use the new df to calculate the average score per tier, of 
-    students who are accepted.
-    """
+  
 
     list_accepted = []
     for item in list_to_agg:
