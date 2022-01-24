@@ -287,7 +287,7 @@ st.write(df_skew_tiers_counts)
 The following table was obtained through a 'Freedom of Information' request, from simulations run by BPS. This information was not shared by BPS 
 with the broader public.
 """
-st.image('https://raw.githubusercontent.com/vrhegde/streamlit-1/main/julysims.JPG',,use_column_width=True)  
+st.image('https://raw.githubusercontent.com/vrhegde/streamlit-1/main/julysims.JPG',use_column_width=True)  
 
 #------------------------------------- calculate and display tables of scores per tier--------------------------------end  
 
