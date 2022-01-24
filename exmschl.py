@@ -70,7 +70,7 @@ num_seats = form1.number_input('Total seats available(~1000, historically)', min
 
 num_trials = form1.number_input('Trials to run', min_value = 10, max_value = 1000, value = 100, step = 10)
 
-GPA_score = formi.radio('this is a button',('12 point scale', '11 point scale'))
+GPA_score = form1.radio('this is a button',('12 point scale', '11 point scale'))
 
 form1.form_submit_button('Submit changes')
 #-------------------------------------------Input form----------------end
@@ -91,6 +91,8 @@ tier_even =  p=[.125,.125,.125,.125,.125,.125,.125,.125]
 
 # Unevenly distrubuted tier sizes, with larger tiers at the upper end.
 tier_skew =  p=[0.09, 0.1, 0.11, 0.12, 0.13, 0.14, 0.15, 0.16]
+
+
 
 #----------------------------------set variables--------------------end
 
