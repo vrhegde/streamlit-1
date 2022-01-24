@@ -315,8 +315,8 @@ st.write(skew_tiers_mean_scores)
 """
 
 ##### Comparison to simulations run by BPS
-The following table was obtained through a 'Freedom of Information' request, from simulations run by BPS. This information was not shared by BPS 
-with the broader public.
+The following table is from simulations run by BPS. This information was not shared by BPS 
+with the broader public, but was shared with the school committee.
 """
 st.image('https://raw.githubusercontent.com/vrhegde/streamlit-1/main/julysims.JPG',use_column_width=True)  
 
