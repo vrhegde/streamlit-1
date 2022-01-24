@@ -72,6 +72,8 @@ num_trials = form1.number_input('Trials to run', min_value = 10, max_value = 100
 
 GPA_scale = form1.radio('GPA: 11 vs 12 point scale',(11, 12))
 
+skew_dist = form1.radio('Uneven tier distribution',('skew 1', 'skew 2'))
+
 form1.form_submit_button('Submit changes')
 #-------------------------------------------Input form----------------end
 
@@ -93,6 +95,10 @@ tier_even =  p=[.125,.125,.125,.125,.125,.125,.125,.125]
 
 # Unevenly distrubuted tier sizes, with larger tiers at the upper end.
 tier_skew =  p=[0.09, 0.1, 0.11, 0.12, 0.13, 0.14, 0.15, 0.16]
+
+skew2 =  p=[0.09, 0.1, 0.11, 0.12, 0.13, 0.14, 0.15, 0.16]
+
+skew2 =  p=[0.07, 0.08, 0.09, 0.10, 0.12, 0.15, 0.18, 0.21]
 
 
 
