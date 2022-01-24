@@ -70,7 +70,7 @@ num_seats = form1.number_input('Total seats available(~1000, historically)', min
 
 num_trials = form1.number_input('Trials to run', min_value = 10, max_value = 1000, value = 100, step = 10)
 
-GPA_score = form1.radio('GPA: 11 vs i2 point scale',(11, 12))
+GPA_scale = form1.radio('GPA: 11 vs 12 point scale',(11, 12))
 
 form1.form_submit_button('Submit changes')
 #-------------------------------------------Input form----------------end
@@ -78,6 +78,8 @@ form1.form_submit_button('Submit changes')
 
 
 #----------------------------------set variables--------------------begin
+GPA_max = GPA_scale 
+
 n_students =  num_stu
 
 total_seats =  num_seats
@@ -119,10 +121,10 @@ def make_data(tier_prob_dist,  bonus_points = False):
   keys_col = np.arange(0,n_students,1)  #student identifier from 0-2500
   tier_col = np.random.choice(np.arange(1, 9),size = [n_students,1], p = tier_prob_dist).flatten().tolist() # generate a list to poppulate the tier column
   bonus_col = np.random.choice(a=[1,0], size=(n_students,1), p=[.8,.2]).flatten().tolist() # generate a list to poppulate the tier column
-  raw_score = np.random.randint(8, 12, [n_students,1]).flatten().tolist()
+  raw_score = np.random.randint(8, (GPA_max +1), [n_students,1]).flatten().tolist()
 
   sim_df = pd.DataFrame(zip(keys_col,tier_col,bonus_col,raw_score), columns = ['keys','tier','bonus','raw_score'])
-  sim_df['scaled_score'] = sim_df.raw_score * (100/11)
+  sim_df['scaled_score'] = sim_df.raw_score * (100/GPA_max)
   sim_df['scaled_score'] = sim_df['scaled_score'].round(2)
   if bonus_points == True:
     sim_df['final_score'] = sim_df['scaled_score'] + sim_df.bonus * 10
