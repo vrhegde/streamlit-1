@@ -72,7 +72,7 @@ num_trials = form1.number_input('Trials to run', min_value = 10, max_value = 100
 
 GPA_scale = form1.radio('GPA: 11 vs 12 point scale',(11, 12))
 
-skew_dist = form1.radio('Uneven tier distribution',('skew 1', 'skew 2'))
+skew_dist = form1.radio('Uneven tier distribution \n Refer to text for details ',('skew 1', 'skew 2'))
 
 form1.form_submit_button('Submit changes')
 #-------------------------------------------Input form----------------end
