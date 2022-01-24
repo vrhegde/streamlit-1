@@ -63,9 +63,10 @@ form1 = st.sidebar.form(key ='options')
 
 form1.header('Input Parameters')
 
-num_stu = form1.number_input('Total eligible students', min_value = 400, max_value = 6000, value = 2100, step =200)
+num_stu = form1.number_input('Total eligible students (btween 2100 and 2900 historically)', min_value = 400, max_value = 6000, value = 2100, step =200)
 
-num_seats = form1.number_input('Total seats available', min_value = 3, max_value = 1500, value = 1000, step = 10)
+
+num_seats = form1.number_input('Total seats available(~1000, historically)', min_value = 3, max_value = 1500, value = 1000, step = 10)
 
 num_trials = form1.number_input('Trials to run', min_value = 10, max_value = 1000, value = 100, step = 10)
 
@@ -220,7 +221,27 @@ def count_applicants_tier_score(tier_type):
     result_df['total_applicants'] = result_df.sum(axis = 1) #Add a column for the total for each row.
     result_df = round(result_df/n_trials,2) # Transpose the df to have tiers as columns and scores as rows. Divide by 100 since 100 simulations were used.
     result_df.index = ['tier1','tier2','tier3','tier4','tier5','tier6','tier7','tier8'] #name the columns
-    return result_df
+    
+    #--------part 2------ calculates average score of accepted for each tier
+    """
+    In the following code, I will take the list of dfs created initially, calculate the top 125 for each tier (using head(125)), 
+    and make a new concated df with all of the top 125 per tier dataframes. I will use the new df to calculate the average score per tier, of 
+    students who are accepted.
+    """
+
+    list_accepted = []
+    for item in list_to_agg:
+        top_125 = item.sort_values('final_score', ascending = False).groupby('tier').head(125) 
+        list_accepted.append(top_125)
+  
+    new_df_top125 = pd.concat(list_accepted) #concate all the df made into one long df
+    new_df_top125 = new_df_top125[['tier','raw_score']] #subset to get only the columns you want
+  
+    mean_score = new_df_top125.groupby('tier')['raw_score'].mean()
+  
+    return result_df, mean_score
+
+ 
 
 
 #-----------------------------------------------------------Functions ------------------------------------------------end
@@ -237,8 +258,8 @@ def count_applicants_tier_score(tier_type):
     
 #------------------------------------- calculate and display tables of scores per tier--------------------------------begin   
     
-df_even_tiers_counts = count_applicants_tier_score(tier_even)
-df_skew_tiers_counts = count_applicants_tier_score(tier_skew)  
+df_even_tiers_counts, even_tiers_mean_scores = count_applicants_tier_score(tier_even)
+df_skew_tiers_counts, skew_tiers_mean_scores = count_applicants_tier_score(tier_skew)  
 """
 ### Average number of students per tier, per GPA. 
 The following two tables demonstrate the distribution of students by GPA, in each tier. 
@@ -260,6 +281,13 @@ st.write(df_even_tiers_counts)
 ##### Skewed tier distribution
 """
 st.write(df_skew_tiers_counts)
+
+"""
+##### Comparison to simulations run by BPS
+The following table was obtained through a 'Freedom of Information' request, from simulations run by BPS. This information was not shared by BPS 
+with the broader public.
+"""
+st.image('https://raw.githubusercontent.com/vrhegde/streamlit-1/main/julysims.JPG',,use_column_width=True)  
 
 #------------------------------------- calculate and display tables of scores per tier--------------------------------end  
 
@@ -295,6 +323,7 @@ with st.expander(" Explanatory note for the plots"):
         the entire histogram is located to the right of the redline, then there are more students than seats for every run of the n_trials. If the histogram straddles the redline, then there were
         some trials where there were more students (who scored above the cutoff) than seats, and some trials where there were less students (who scored above the cutoff) than there were seats.
         """)
+    
 #-------------------------Markdown text that will be displayed in the browser--------------end
 
 
