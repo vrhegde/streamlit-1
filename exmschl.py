@@ -70,7 +70,7 @@ num_seats = form1.number_input('Total seats available(~1000, historically)', min
 
 num_trials = form1.number_input('Trials to run', min_value = 10, max_value = 1000, value = 100, step = 10)
 
-GPA_score = form1.radio('this is a button',('12 point scale', '11 point scale'))
+GPA_score = form1.radio('GPA: 11 vs i2 point scale',(11, 12))
 
 form1.form_submit_button('Submit changes')
 #-------------------------------------------Input form----------------end
