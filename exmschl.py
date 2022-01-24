@@ -350,7 +350,7 @@ as a histogram. The more trials you run, the more these histograms will resemble
 """
 #--------------------------Markdown text that will be displayed in the browser-------------begin
 
-with st.expander(" Explanatory note for the plots"):
+with st.expander(" Explanatory note for the plots (expand for details)"):
     st.image('https://raw.githubusercontent.com/vrhegde/streamlit-1/main/sim_hist_app.png',use_column_width=True)   
     st.write("""
         1. At each trial, the number of students who score at or above a certain cutoff score is calculated. The simulation is run n number of times (thousand in the instance above)
