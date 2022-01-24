@@ -339,6 +339,13 @@ df_skew_NoBonus_Aplus = simulate_trials(make_data,tier_skew, 100,bonus_points = 
 
 
 """
+## Histograms depicting the distribution of number of high GPA students in each tier.
+The number of high GPA students in each tier was counted for each random simulation. Simulation was run muntiple times and the resulting data plotted 
+as a histogram. 
+"""
+
+
+"""
 #### When no bonus points are awarded.
 """
 #--------------------------Markdown text that will be displayed in the browser-------------begin
