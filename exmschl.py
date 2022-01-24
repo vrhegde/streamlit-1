@@ -63,7 +63,7 @@ form1 = st.sidebar.form(key ='options')
 
 form1.header('Input Parameters')
 
-num_stu = form1.number_input('Total eligible students (btween 2100 and 2900 historically)', min_value = 400, max_value = 6000, value = 2100, step =200)
+num_stu = form1.number_input('Total eligible students (between 2100 and 2900 historically)', min_value = 400, max_value = 6000, value = 2100, step =200)
 
 
 num_seats = form1.number_input('Total seats available(~1000, historically)', min_value = 3, max_value = 1500, value = 1000, step = 10)
@@ -273,16 +273,28 @@ in their calculation for exam school admissions, and the maximum grade allowed w
 """
 
 """
-##### Even tier distribution
+### Even tier distribution
+###### Average number of applicants per tier
 """
 st.write(df_even_tiers_counts)
+"""
+###### Average score of students accepted into exam school
+"""
+st.write(even_tiers_mean_scores)
 
 """
-##### Skewed tier distribution
+### Skewed tier distribution
+###### Average number of applicants per tier
 """
 st.write(df_skew_tiers_counts)
 
 """
+###### Average score of students accepted into exam school
+"""
+st.write(skew_tiers_mean_scores)
+
+"""
+
 ##### Comparison to simulations run by BPS
 The following table was obtained through a 'Freedom of Information' request, from simulations run by BPS. This information was not shared by BPS 
 with the broader public.
