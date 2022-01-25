@@ -316,8 +316,11 @@ st.write(skew_tiers_mean_scores)
 """
 
 ##### Comparison to simulations run by BPS
-The following table is from simulations run by BPS. This information was not shared by BPS 
-with the broader public, but was shared with the school committee.
+The following table is from simulations run by BPS. This information was shared by BPS with the school committee. 'Composite D' refers to the plan which includes
+bonus points for most BPS schools. 'Composite A' is the plan without bonus points. BPS will not release data on how lop-sided the distribution of eligible 
+students per tier is. You can toggle between two skewed distributions (radio buttons in the input form) to identify which of the two distributions fits the data
+presented in this table.  
+
 """
 st.image('https://raw.githubusercontent.com/vrhegde/streamlit-1/main/julysims.JPG',use_column_width=True)  
 
