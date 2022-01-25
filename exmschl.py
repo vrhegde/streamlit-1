@@ -253,6 +253,7 @@ def count_applicants_tier_score(tier_type):
     new_df_top125 = new_df_top125[['tier','raw_score']] #subset to get only the columns you want
   
     mean_score = new_df_top125.groupby('tier')['raw_score'].mean()
+    mean_score.index = ['tier1','tier2','tier3','tier4','tier5','tier6','tier7','tier8'] #name the columns
   
     return result_df, mean_score
 
