@@ -68,7 +68,7 @@ num_stu = form1.number_input('Total eligible students (between 2100 and 2900 his
 
 num_seats = form1.number_input('Total seats available(~1000, historically)', min_value = 3, max_value = 1500, value = 1000, step = 10)
 
-num_trials = form1.number_input('Trials to run', min_value = 10, max_value = 1000, value = 100, step = 10)
+num_trials = form1.number_input('Trials to run (default 100 trials takes ~ 1 min, 1000 will take 3.5 mins)', min_value = 10, max_value = 1000, value = 100, step = 10)
 
 GPA_scale = form1.radio('GPA: 11 vs 12 point scale',(11, 12))
 
