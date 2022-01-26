@@ -252,7 +252,7 @@ def count_applicants_tier_score(tier_type):
         list_accepted.append(top_125)
   
     new_df_top125 = pd.concat(list_accepted) #concate all the df made into one long df
-    calc_ratio_bonus = new_df_top125.groupby('bonus')['raw_score'].count()
+    calc_ratio_bonus = round(new_df_top125['bonus'].mean() * 100, 2)
     new_df_top125 = new_df_top125[['tier','raw_score']] #subset to get only the columns you want
   
     mean_score = new_df_top125.groupby('tier')['raw_score'].mean()
@@ -305,7 +305,9 @@ st.write(df_even_tiers_counts)
 """
 st.write(even_tiers_mean_scores)
 
-
+"""
+###### Percentage of accepted students who have bonus points
+"""
 st.write(even_calc_ratio_bonus)
 
 """
@@ -319,6 +321,9 @@ st.write(df_skew_tiers_counts)
 """
 st.write(skew_tiers_mean_scores)
 
+"""
+###### Percentage of accepted students who have bonus points
+"""
 st.write(skew_calc_ratio_bonus)
 
 """
