@@ -70,7 +70,7 @@ num_seats = form1.number_input('Total seats available(~450 for BLS, ~1000 alll 3
 
 num_trials = form1.number_input('Trials to run (default 100 trials takes ~ 1 min, 1000 will take 3.5 mins)', min_value = 10, max_value = 10000, value = 100, step = 10)
 
-GPA_scale = form1.radio('GPA: 11 vs 12 point scale',(11, 12))
+GPA_scale = form1.radio('GPA: 12 vs 11 point scale',(12, 11))
 
 skew_dist = form1.radio('Uneven tier distribution (refer to text for details) ',('skew 1', 'skew 2'))
 
@@ -487,7 +487,11 @@ from a minority of students, you ensure that admission to exam school for studen
 
 
 """
+"""
+#### Note: BPS has proposed to eliminate A+ grades, and to downgrade every A+ into A. If so, a 11 point GPA scale will be used. Please toggle the GPA scale to 11 points in the input form.
+#### to see the effect.
 
+"""
 
 df_1000_even_reject = A_plus_rejected(tier_even) # Thousand trials, tiers are evenly distrubuted
 
