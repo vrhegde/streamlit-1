@@ -252,7 +252,6 @@ def count_applicants_tier_score(tier_type):
         list_accepted.append(top_125)
   
     new_df_top125 = pd.concat(list_accepted) #concate all the df made into one long df
-    #calc_ratio_bonus = round(new_df_top125['bonus'].mean() * 100, 2)
     new_df_top125 = new_df_top125[['tier','raw_score']] #subset to get only the columns you want
   
     mean_score = new_df_top125.groupby('tier')['raw_score'].mean()
@@ -277,8 +276,8 @@ def count_applicants_tier_score(tier_type):
     
 #------------------------------------- calculate and display tables of scores per tier--------------------------------begin   
     
-df_even_tiers_counts, even_tiers_mean_scores, even_calc_ratio_bonus = count_applicants_tier_score(tier_even)
-df_skew_tiers_counts, skew_tiers_mean_scores, skew_calc_ratio_bonus = count_applicants_tier_score(tier_skew)  
+df_even_tiers_counts, even_tiers_mean_scores = count_applicants_tier_score(tier_even)
+df_skew_tiers_counts, skew_tiers_mean_scores = count_applicants_tier_score(tier_skew)  
 """
 ### Average number of students per tier, per GPA. 
 The following two tables demonstrate the distribution of students by GPA, in each tier. 
