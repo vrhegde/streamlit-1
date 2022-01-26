@@ -94,16 +94,18 @@ seats_per_tier = total_seats/8
 tier_even =  p=[.125,.125,.125,.125,.125,.125,.125,.125]
 
 # Unevenly distrubuted tier sizes, with larger tiers at the upper end.
-skew1 =  p=[0.09, 0.1, 0.11, 0.12, 0.13, 0.14, 0.15, 0.16]
 
-skew2 =  p=[0.07, 0.08, 0.09, 0.10, 0.12, 0.15, 0.18, 0.21]
+skew1 =  p=[0.07, 0.08, 0.09, 0.10, 0.12, 0.15, 0.18, 0.21]
+skew2 =  p=[0.09, 0.1, 0.11, 0.12, 0.13, 0.14, 0.15, 0.16]
 
 
 
 if skew_dist == 'skew 1':
-    tier_skew = skew1
+   tier_skew = skew1
 else:
-    tier_skew = skew2
+   tier_skew = skew2
+
+
 
 
 
@@ -316,15 +318,28 @@ st.write(skew_tiers_mean_scores)
 """
 
 ##### Comparison to simulations run by BPS
-The following table is from simulations run by BPS. This information was shared by BPS with the school committee. 'Composite D' refers to the plan which includes
+The following tables are from simulations run by BPS. This information was shared by BPS with the school committee. 
+
+Table 1: 'Composite D' refers to the plan which includes
 bonus points for most BPS schools. 'Composite A' is the plan without bonus points. BPS will not release data on how lop-sided the distribution of eligible 
 students per tier is. You can toggle between two skewed distributions (radio buttons in the input form) to identify which of the two distributions fits the data
-presented in this table.  
-Please note that BPS used a 12 point GPA scale for this simulation, with A+ = 12 and B- =7. But they have stated that A+ will be eliminated for this year. 
+presented in this table. Please note that BPS used a 12 point GPA scale for this simulation, with A+ = 12 and B- =7. But they have stated that A+ will be eliminated for this year. 
 This app uses a 11 point scale by default, but you can toggle to a 12 point scale using the radio button, "GPA: 11 vs 12 point scale" in the input form.
 
+Table 2: This table shows the distribution of the number of students who applied and took the ISEE, and the number who would be eligible to apply with the new criteria
+
+"""
+
+"""
+### Table 1
 """
 st.image('https://raw.githubusercontent.com/vrhegde/streamlit-1/main/julysims.JPG',use_column_width=True)  
+
+"""
+### Table 1
+"""
+st.image('https://raw.githubusercontent.com/vrhegde/streamlit-1/main/ActualApplicants.JPG',use_column_width=True)  
+
 
 #------------------------------------- calculate and display tables of scores per tier--------------------------------end  
 
