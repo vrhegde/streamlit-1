@@ -96,7 +96,7 @@ tier_even =  p=[.125,.125,.125,.125,.125,.125,.125,.125]
 # Unevenly distrubuted tier sizes, with larger tiers at the upper end.
 
 skew1 =  p=[0.07, 0.08, 0.09, 0.10, 0.12, 0.15, 0.18, 0.21]
-skew2 =  p=[0.09, 0.1, 0.11, 0.12, 0.13, 0.14, 0.15, 0.16]
+skew2 =   p=[0.06, 0.07, 0.08, 0.10, 0.12, 0.15, 0.19, 0.23]
 
 
 
@@ -252,13 +252,13 @@ def count_applicants_tier_score(tier_type):
         list_accepted.append(top_125)
   
     new_df_top125 = pd.concat(list_accepted) #concate all the df made into one long df
-    calc_ratio_bonus = round(new_df_top125['bonus'].mean() * 100, 2)
+    #calc_ratio_bonus = round(new_df_top125['bonus'].mean() * 100, 2)
     new_df_top125 = new_df_top125[['tier','raw_score']] #subset to get only the columns you want
   
     mean_score = new_df_top125.groupby('tier')['raw_score'].mean()
     mean_score.index = ['tier1','tier2','tier3','tier4','tier5','tier6','tier7','tier8'] #name the columns
   
-    return result_df, mean_score, calc_ratio_bonus
+    return result_df, mean_score
 
  
 
@@ -283,14 +283,15 @@ df_skew_tiers_counts, skew_tiers_mean_scores, skew_calc_ratio_bonus = count_appl
 ### Average number of students per tier, per GPA. 
 The following two tables demonstrate the distribution of students by GPA, in each tier. 
 When an even distribution of students is assumed, the number of students in each tier is calculated by dividing the total number of 
-eligible applicants (specified in the input form) by 8 (total number of tiers. To calculate the effect of unevenly sized tiers, we use the following probablities
-are used as default to calculate the number of students in each tier. Tier1 = 9%, tier2 = 10%, tier3 = 11%, tier4 = 12 %, tier5= 13 %, tier6 = 14%, tier7 = 0.15, tier8 = 16%. 
-The total of these probablities adds up to 100%. We can also use a more skewed distribution ('skew 2') in setting the parameters for calculation. For 'skew 2'
-the following probablities are used Tier1 = 7%, tier2 = 8%, tier3 = 9%, tier4 = 10 %, tier5= 12 %, tier6 = 15%, tier7 = 0.18, tier8 = 21%. Using the toggle radio button in the input
-form, you can simulate both distributions.
+eligible applicants (specified in the input form) by 8 (total number of tiers. 
+To calculate the effect of unevenly sized tiers, we used tried out a range of probablity distributions which would produce results that closely mirrored
+the simulation data shown by BPS. We have produced two different options for people to use in simulation, Skew1 and Skew2. For 'skew 1'
+the following probablities are used Tier1 = 7%, tier2 = 8%, tier3 = 9%, tier4 = 10 %, tier5= 12 %, tier6 = 15%, tier7 = 0.18, tier8 = 21%. 
+The total of these probablities adds up to 100%. For 'skew 2' the following probablities are used Tier1 = 6%, tier2 = 7%, tier3 = 8%, tier4 = 10 %, tier5= 12 %, tier6 = 15%, tier7 = 0.19, tier8 = 23%. 
+Using the toggle radio button in the input form, you can simulate both distributions.
 
 
-The table columns Indicate grades thus: grade B= 8, grade B+ = 9, grade A- = 10, grade A = 11. This association of grades with a 11 point scale is what BPS 
+The table columns indicate grades as follows: grade B= 8, grade B+ = 9, grade A- = 10, grade A = 11. This association of grades with a 11 point scale is what BPS 
 has proposed to use. In prior years, a 12 point scale, with grade A+ = 12 was used. But BPS has informed the school committee that they intend to eliminate A+ 
 in their calculation for exam school admissions, and the maximum grade allowed wil be A (all A+ to be downgraded to A)
 """
@@ -305,10 +306,6 @@ st.write(df_even_tiers_counts)
 """
 st.write(even_tiers_mean_scores)
 
-"""
-###### Percentage of accepted students who have bonus points
-"""
-st.write(even_calc_ratio_bonus)
 
 """
 ### Skewed tier distribution
@@ -321,12 +318,7 @@ st.write(df_skew_tiers_counts)
 """
 st.write(skew_tiers_mean_scores)
 
-"""
-###### Percentage of accepted students who have bonus points
-"""
-st.write(skew_calc_ratio_bonus)
 
-"""
 
 ##### Comparison to simulations run by BPS
 The following tables are from simulations run by BPS. This information was shared by BPS with the school committee. 
@@ -337,7 +329,10 @@ students per tier is. You can toggle between two skewed distributions (radio but
 presented in this table. Please note that BPS used a 12 point GPA scale for this simulation, with A+ = 12 and B- =7. But they have stated that A+ will be eliminated for this year. 
 This app uses a 11 point scale by default, but you can toggle to a 12 point scale using the radio button, "GPA: 11 vs 12 point scale" in the input form.
 
-Table 2: This table shows the distribution of the number of students who applied and took the ISEE, and the number who would be eligible to apply with the new criteria
+Table 2: This table shows the distribution of the number of students who applied and took the ISEE, and the number who would be eligible to apply with the new criteria.
+    While 2104 students from 'bonus points' schools took the test, only 1100 scored a GPA of B or above. Similarly of the 697 students from 'non-bonus-points' schoola
+    only 580 scored a GPA of B or above. While 796 out of 1100 (72%) of the bonus points students will qualify through the new admission criteria, only 204 out of 
+    580 (35%) students from the non-bonus-points schools will get in.
 
 """
 
