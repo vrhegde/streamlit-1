@@ -63,10 +63,10 @@ form1 = st.sidebar.form(key ='options')
 
 form1.header('Input Parameters')
 
-num_stu = form1.number_input('Total eligible students (between 2100 and 2900 historically)', min_value = 400, max_value = 6000, value = 2100, step =200)
+num_stu = form1.number_input('Total eligible students (~ 1700 eligble applicants in 2019, if using new admission criteria )', min_value = 400, max_value = 6000, value = 1700, step =200)
 
 
-num_seats = form1.number_input('Total seats available(~1000, historically)', min_value = 3, max_value = 1500, value = 1000, step = 10)
+num_seats = form1.number_input('Total seats available(~450 for BLS, ~1000 alll 3 schools combined)', min_value = 3, max_value = 1500, value = 1000, step = 10)
 
 num_trials = form1.number_input('Trials to run (default 100 trials takes ~ 1 min, 1000 will take 3.5 mins)', min_value = 10, max_value = 10000, value = 100, step = 10)
 
@@ -252,12 +252,13 @@ def count_applicants_tier_score(tier_type):
         list_accepted.append(top_125)
   
     new_df_top125 = pd.concat(list_accepted) #concate all the df made into one long df
+    calc_ratio_bonus = new_df_top125['bonus'].groupby('bonus').count()
     new_df_top125 = new_df_top125[['tier','raw_score']] #subset to get only the columns you want
   
     mean_score = new_df_top125.groupby('tier')['raw_score'].mean()
     mean_score.index = ['tier1','tier2','tier3','tier4','tier5','tier6','tier7','tier8'] #name the columns
   
-    return result_df, mean_score
+    return result_df, mean_score, calc_ratio_bonus
 
  
 
@@ -276,8 +277,8 @@ def count_applicants_tier_score(tier_type):
     
 #------------------------------------- calculate and display tables of scores per tier--------------------------------begin   
     
-df_even_tiers_counts, even_tiers_mean_scores = count_applicants_tier_score(tier_even)
-df_skew_tiers_counts, skew_tiers_mean_scores = count_applicants_tier_score(tier_skew)  
+df_even_tiers_counts, even_tiers_mean_scores, even_calc_ratio_bonus = count_applicants_tier_score(tier_even)
+df_skew_tiers_counts, skew_tiers_mean_scores, skew_calc_ratio_bonus = count_applicants_tier_score(tier_skew)  
 """
 ### Average number of students per tier, per GPA. 
 The following two tables demonstrate the distribution of students by GPA, in each tier. 
@@ -304,6 +305,9 @@ st.write(df_even_tiers_counts)
 """
 st.write(even_tiers_mean_scores)
 
+
+st.write(even_calc_ratio_bonus)
+
 """
 ### Skewed tier distribution
 ###### Average number of applicants per tier
@@ -314,6 +318,8 @@ st.write(df_skew_tiers_counts)
 ###### Average score of students accepted into exam school
 """
 st.write(skew_tiers_mean_scores)
+
+st.write(skew_calc_ratio_bonus)
 
 """
 
