@@ -488,8 +488,8 @@ from a minority of students, you ensure that admission to exam school for studen
 
 """
 """
-#### Note: BPS has proposed to eliminate A+ grades, and to downgrade every A+ into A. If so, a 11 point GPA scale will be used. Please toggle the GPA scale to 11 points in the input form.
-#### to see the effect.
+##### Note: BPS has proposed to eliminate A+ grades. If so, a 11 point GPA scale will be used. Please toggle the GPA scale in the input form to 11 points.
+
 
 """
 
