@@ -228,7 +228,7 @@ def count_applicants_tier_score(tier_type):
 
     list_to_agg = [] #to collect each df made with the following loop
     for i in range(n_trials): # run the make_df function a 100 times
-       list_to_agg.append(make_data(tier_type))
+       list_to_agg.append(make_data(tier_type, bonus_points = True))
     new_df = pd.concat(list_to_agg) #concate all the df made into one long df
 
     new_df = new_df[['tier','raw_score']] #subset to get only the columns you want
