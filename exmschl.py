@@ -252,7 +252,7 @@ def count_applicants_tier_score(tier_type):
         list_accepted.append(top_125)
   
     new_df_top125 = pd.concat(list_accepted) #concate all the df made into one long df
-    calc_ratio_bonus = new_df_top125['bonus'].groupby('bonus').count()
+    calc_ratio_bonus = new_df_top125.groupby('bonus')['raw_score'].count()
     new_df_top125 = new_df_top125[['tier','raw_score']] #subset to get only the columns you want
   
     mean_score = new_df_top125.groupby('tier')['raw_score'].mean()
