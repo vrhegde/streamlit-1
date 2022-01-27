@@ -14,7 +14,7 @@ from PIL import Image
 """
 #### Background:
 """
-with st.expander("Background (expand for details)"):
+with st.expander("Expand for details on background"):
      st.write("""
 
     Until 2020, admission to Boston's three 'exam schools' was determined by a combination of a standardized test (the ISEE) and grades. Each of these two criteria was weighted equally. Students competed for these seats in a single combined pool. Thus a city-wide competition based on merit, was the only metric for admission into these selective schools.
@@ -39,7 +39,7 @@ with st.expander("Background (expand for details)"):
 """
 #### Methods:
 """        
-with st.expander("Methods (expand for details)"):
+with st.expander("Expand for details on methods"):
      st.write("""
      We will first create synthetic data using two different methods. The first without bonus points, and the second with bonus points. We will create two tier distributions: First, tiers that have the same number of students (Even Distribution); second, with more students in the upper tiers (Skewed Distribution). For the skewed tier distribution, relative distribution of students per tier will be estimated by data presented by the school committee and the exam school task force.
 
@@ -288,7 +288,13 @@ def count_applicants_tier_score(tier_type):
 df_even_tiers_counts, even_tiers_mean_scores = count_applicants_tier_score(tier_even)
 df_skew_tiers_counts, skew_tiers_mean_scores = count_applicants_tier_score(tier_skew)  
 """
-### Average number of students per tier, per GPA. 
+#### Comparison of synthetic data to data previously shared by BPS
+Despite muntiple requests from concerned parents, BPS has not shared the underlying data they used in the simulations. Thus we have to estimate the underlying distributions of 
+grades, and the numbers of qualified students per tier. This estimation is done by comparing results from our synthetic data to the small pieces of real data from the
+2019 cohort, that was shared by BPS in various public meetings. By adjusting the input parameters we can achieve a good match to the 2019 admission cycle data that was
+presented by BPS. 
+ 
+Average number of students per tier, per GPA. 
 The following two tables demonstrate the distribution of students by GPA, in each tier. 
 When an even distribution of students is assumed, the number of students in each tier is calculated by dividing the total number of 
 eligible applicants (specified in the input form) by 8 (total number of tiers. 
