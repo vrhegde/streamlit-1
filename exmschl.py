@@ -289,13 +289,13 @@ def count_applicants_tier_score(tier_type):
 df_even_tiers_counts, even_tiers_mean_scores = count_applicants_tier_score(tier_even)
 df_skew_tiers_counts, skew_tiers_mean_scores = count_applicants_tier_score(tier_skew)  
 """
-#### Comparison of synthetic data to data previously shared by BPS
+###### Validation of synthetic data
 Despite muntiple requests from concerned parents, BPS has not shared the underlying data they used in the simulations. Thus we have to estimate the underlying distributions of 
 grades, and the numbers of qualified students per tier. This estimation is done by comparing results from our synthetic data to the small pieces of real data from the
 2019 cohort, that was shared by BPS in various public meetings. By adjusting the input parameters we can achieve a good match to the 2019 admission cycle data that was
 presented by BPS. 
  
-Average number of students per tier, per GPA. 
+###### Synthetic data, average number of students per tier, per GPA. 
 The following two tables demonstrate the distribution of students by GPA, in each tier. 
 When an even distribution of students is assumed, the number of students in each tier is calculated by dividing the total number of 
 eligible applicants (specified in the input form) by 8 (total number of tiers. 
@@ -312,24 +312,23 @@ in their calculation for exam school admissions, and the maximum grade allowed w
 """
 
 """
-### Even tier distribution
-###### Average number of applicants per tier
+###### Average number of applicants per tier when the tiers are evenly sized
 """
 st.write(df_even_tiers_counts)
 """
-###### Average score of students accepted into exam school
+####### Average score of students accepted into exam school
 """
 st.write(even_tiers_mean_scores)
 
 
 """
-### Skewed tier distribution
-###### Average number of applicants per tier
+
+###### Average number of applicants per tier when the tier sizes are skewed, with upper tiers significantly larger than lower tiers
 """
 st.write(df_skew_tiers_counts)
 
 """
-###### Average score of students accepted into exam school
+####### Average score of students accepted into exam school
 """
 st.write(skew_tiers_mean_scores)
 
