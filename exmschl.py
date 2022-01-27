@@ -8,7 +8,8 @@ from PIL import Image
 """
 ### Boston Public School's new policy will leaves many students with no path of admission into Exam Schools.
 
-###### The effect of uneven tier distribution and bonus points on the probability of admission into Boston's exam schools.
+###### Finding: Using synthetic data generated to mimic the applicant pool, and by running repeted simulations, we can show that uneven tier distribution, the use of bonus
+points, and the proposal to eliminate A+ grade will all add up such that some students in Boston will have not possible path of admission into Boston's exam schools.
 """
 #-----------------------------------------Markdown text that will be displayed in the browser-----------------------------begin
 """
