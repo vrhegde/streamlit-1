@@ -316,7 +316,7 @@ in their calculation for exam school admissions, and the maximum grade allowed w
 """
 st.write(df_even_tiers_counts)
 """
-####### Average score of students accepted into exam school
+Average score of students accepted into exam school
 """
 st.write(even_tiers_mean_scores)
 
@@ -328,7 +328,7 @@ st.write(even_tiers_mean_scores)
 st.write(df_skew_tiers_counts)
 
 """
-####### Average score of students accepted into exam school
+Average score of students accepted into exam school
 """
 st.write(skew_tiers_mean_scores)
 
