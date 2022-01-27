@@ -6,7 +6,7 @@ import matplotlib.pyplot as plt
 from PIL import Image
 
 """
-## Boston Public School's new exam schools policy will leaves many students with no path of admission into these schools.
+### Boston Public School's new policy will leaves many students with no path of admission into Exam Schools.
 
 ###### The effect of uneven tier distribution and bonus points on the probability of admission into Boston's exam schools.
 """
@@ -14,7 +14,7 @@ from PIL import Image
 """
 #### Background:
 """
-with st.expander("Expand for details on background"):
+with st.expander("Details on previous policy, and proposed changes"):
      st.write("""
 
     Until 2020, admission to Boston's three 'exam schools' was determined by a combination of a standardized test (the ISEE) and grades. Each of these two criteria was weighted equally. Students competed for these seats in a single combined pool. Thus a city-wide competition based on merit, was the only metric for admission into these selective schools.
@@ -38,6 +38,7 @@ with st.expander("Expand for details on background"):
 
 """
 #### Methods:
+###### Generation of synthetic data for simulation
 """        
 with st.expander("Expand for details on methods"):
      st.write("""
