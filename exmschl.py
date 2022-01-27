@@ -5,11 +5,17 @@ import numpy as np
 import matplotlib.pyplot as plt
 from PIL import Image
 
-st.title('Boston Exam School Admissions')
+"""
+## Boston Public School's new exam schools policy will leaves many students with no path of admission into these schools.
 
+###### The effect of uneven tier distribution and bonus points on the probability of admission into Boston's exam schools.
+"""
 #-----------------------------------------Markdown text that will be displayed in the browser-----------------------------begin
 """
-    #### The effect of uneven tier distribution and bonus points on the probability of admission into Boston's exam schools.
+#### Background:
+"""
+with st.expander("Background (expand for details)"):
+     st.write("""
 
     Until 2020, admission to Boston's three 'exam schools' was determined by a combination of a standardized test (the ISEE) and grades. Each of these two criteria was weighted equally. Students competed for these seats in a single combined pool. Thus a city-wide competition based on merit, was the only metric for admission into these selective schools.
 
@@ -28,8 +34,11 @@ st.title('Boston Exam School Admissions')
     The above factors, combined with the fact that the MAP test will not be used for this 2021-2022 admission cycle, ensures that many A+ students, particularly in West-Roxbury (where most non-bonus-point-schools are located) will have no chance of being admitted to these selective schools.
 
     The aim of this project is to demonstrate the effect of bonus points, and of using unevenly distributed tiers, on the probability of admission to selective schools. In this project, we will generate synthetic data (within the bounds of what we know from previous admission cycles) and run repeated simulations to determine the probability distribution of admissions to these schools.
-"""
+""")
 
+"""
+#### Methods:
+"""        
 with st.expander("Methods (expand for details)"):
      st.write("""
      We will first create synthetic data using two different methods. The first without bonus points, and the second with bonus points. We will create two tier distributions: First, tiers that have the same number of students (Even Distribution); second, with more students in the upper tiers (Skewed Distribution). For the skewed tier distribution, relative distribution of students per tier will be estimated by data presented by the school committee and the exam school task force.
