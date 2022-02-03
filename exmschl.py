@@ -9,13 +9,9 @@ from PIL import Image
 ### Boston Public School's new policy will leave many students with no path of admission into Exam Schools.
 
 #### TLDR
-###### Rationale: We suspect that Boston Public Schools (BPS) new policy on admission into selective schools will adversely affect the chances of many students. 
-The effect size is unknown and BPS refuses to release data. Here we estimate the effect of the new policies, using data that has been publicly released by BPS
+###### Rationale: We suspect that Boston Public Schools (BPS) new policy on admission into selective schools will adversely affect the chances of many students. The effect size is unknown and BPS refuses to release data. Here we estimate the effect of the new policies, using data that has been publicly released by BPS
 ###### Method: Monte-Carlo simulation to create probablity distributions.  
-###### Result: 
-By running repeated simulation on synthetic data we can model the probablity distribution of outcomes, of Boston's new policy on admssion into its selective schools.
-We are able to test the effect of the following factors: tiers with uneven number of eligble applicants, bonus points awarded to 80% of eligible applicants, and the elimination of A+ grade. We find that 
-each of these features add up such that students in higher tiers who are not in bonus-points schools, will have not possible path of admission into Boston's exam schools.
+###### Result: We are able to test the effect of the following factors: tiers with uneven number of eligble applicants, bonus points awarded to 80% of eligible applicants, and the elimination of A+ grade. We find that each of these features add up such that students in higher tiers who are not in bonus-points schools, will have not possible path of admission into Boston's exam schools.
 """
 #-----------------------------------------Markdown text that will be displayed in the browser-----------------------------begin
 """
